@@ -22,7 +22,7 @@ export default function Hero() {
     >
       {/* Background grid */}
       <div
-        className="absolute inset-0 opacity-[0.03]"
+        className="absolute inset-0 opacity-[0.04] dark:opacity-[0.03]"
         style={{
           backgroundImage:
             'linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)',
@@ -31,8 +31,8 @@ export default function Hero() {
       />
 
       {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-indigo-600/8 blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-75 h-75 rounded-full bg-violet-600/6 blur-[90px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-indigo-500/5 dark:bg-indigo-600/8 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-75 h-75 rounded-full bg-violet-500/4 dark:bg-violet-600/6 blur-[90px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Badge */}
@@ -41,9 +41,9 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-400 text-xs font-mono mb-8"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-500 dark:text-indigo-400 text-xs font-mono mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
           Available for new opportunities
         </motion.div>
 
@@ -64,7 +64,7 @@ export default function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
-          className="text-xl md:text-2xl text-slate-400 font-light mb-3"
+          className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 font-light mb-3"
         >
           {personal.title}
         </motion.p>
@@ -80,7 +80,7 @@ export default function Hero() {
           {['React & TypeScript', 'Electron Kiosk', 'Telegram Automation', 'VPS / DevOps'].map((tag) => (
             <span
               key={tag}
-              className="px-3 py-1 rounded-full bg-[#1a1a24] border border-[#2a2a38] text-slate-400 text-xs font-mono"
+              className="px-3 py-1 rounded-full bg-(--surface-2) border border-(--border) text-slate-600 dark:text-slate-400 text-xs font-mono"
             >
               {tag}
             </span>
@@ -103,7 +103,7 @@ export default function Hero() {
           </a>
           <button
             onClick={openMailPicker}
-            className="px-7 py-3 rounded-full border border-[#2a2a38] hover:border-indigo-500/50 text-slate-300 hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
+            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
           >
             <Mail size={15} />
             Get in Touch
@@ -142,7 +142,7 @@ export default function Hero() {
                 key={label}
                 onClick={onClick}
                 aria-label={label}
-                className="w-10 h-10 rounded-full border border-[#2a2a38] flex items-center justify-center text-slate-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-all duration-200"
+                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-all duration-200"
               >
                 {icon}
               </button>
@@ -153,7 +153,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-10 h-10 rounded-full border border-[#2a2a38] flex items-center justify-center text-slate-500 hover:text-indigo-400 hover:border-indigo-500/40 transition-all duration-200"
+                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-all duration-200"
               >
                 {icon}
               </a>
@@ -168,7 +168,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-600 hover:text-slate-400 transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
       >
         <span className="text-xs font-mono">scroll</span>
         <motion.div

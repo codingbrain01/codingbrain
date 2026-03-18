@@ -13,6 +13,7 @@ const LinkedInIcon = () => (
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
   </svg>
 );
+
 import { personal } from '../data/resume';
 
 const email = personal.email;
@@ -50,16 +51,16 @@ const mailApps = [
   },
   {
     label: 'Default mail app',
-    icon: <Mail size={16} className="text-slate-400" />,
+    icon: <Mail size={16} className="text-slate-500" />,
     href: `mailto:${email}`,
   },
 ];
 
 const contactLinks = [
-  { icon: <Mail size={18} />,    label: 'Email',    value: email,                          isEmail: true  },
-  { icon: <Phone size={18} />,   label: 'Phone',    value: personal.phone,                 href: `tel:${personal.phone}`, isEmail: false },
-  { icon: <GitHubIcon />,   label: 'GitHub',   value: 'github.com/codingbrain01',                  href: personal.github,   isEmail: false },
-  { icon: <LinkedInIcon />, label: 'LinkedIn', value: 'linkedin.com/in/camden-francisco-1615033b8', href: personal.linkedin, isEmail: false },
+  { icon: <Mail size={18} />,    label: 'Email',    value: email,                                          isEmail: true  },
+  { icon: <Phone size={18} />,   label: 'Phone',    value: personal.phone,  href: `tel:${personal.phone}`, isEmail: false },
+  { icon: <GitHubIcon />,        label: 'GitHub',   value: 'github.com/codingbrain01',                     href: personal.github,   isEmail: false },
+  { icon: <LinkedInIcon />,      label: 'LinkedIn', value: 'linkedin.com/in/camden-francisco-1615033b8',   href: personal.linkedin, isEmail: false },
 ];
 
 export default function Contact() {
@@ -70,7 +71,6 @@ export default function Contact() {
   const pickerRef = useRef<HTMLDivElement>(null);
   const sayHelloRef = useRef<HTMLDivElement>(null);
 
-  // Close picker on outside click
   useEffect(() => {
     if (!pickerOpen) return;
     const handler = (e: MouseEvent) => {
@@ -82,7 +82,6 @@ export default function Contact() {
     return () => document.removeEventListener('mousedown', handler);
   }, [pickerOpen]);
 
-  // Listen for global openMailPicker events (dispatched by Navbar / Hero)
   useEffect(() => {
     const handler = () => {
       setPickerOpen(true);
@@ -106,15 +105,15 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="flex items-center justify-center gap-3 mb-12"
         >
-          <span className="font-mono text-indigo-400 text-sm">05.</span>
-          <h2 className="text-3xl font-bold text-white">Get In Touch</h2>
+          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">05.</span>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
         </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-slate-400 text-lg leading-relaxed mb-10"
+          className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-10"
         >
           Whether you have a project in mind, want to discuss a role, or just want to connect — my inbox is always open.
         </motion.p>
@@ -147,9 +146,9 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 4, scale: 0.97 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute left-1/2 -translate-x-1/2 mt-3 w-52 rounded-xl border border-[#2a2a38] bg-[#111118] shadow-xl shadow-black/40 overflow-hidden z-50"
+                  className="absolute left-1/2 -translate-x-1/2 mt-3 w-52 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden z-50"
                 >
-                  <p className="text-xs text-slate-600 font-mono px-4 pt-3 pb-2 border-b border-[#1e1e2a]">
+                  <p className="text-xs text-slate-500 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
                     Open with…
                   </p>
                   <ul className="py-1">
@@ -160,12 +159,12 @@ export default function Contact() {
                           target={app.label !== 'Default mail app' ? '_blank' : undefined}
                           rel="noopener noreferrer"
                           onClick={() => setPickerOpen(false)}
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-300 hover:bg-indigo-500/10 hover:text-white transition-colors"
+                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-indigo-500/10 hover:text-slate-900 dark:hover:text-white transition-colors"
                         >
                           {app.icon}
                           {app.label}
                           {app.label !== 'Default mail app' && (
-                            <ArrowUpRight size={12} className="ml-auto text-slate-600" />
+                            <ArrowUpRight size={12} className="ml-auto text-slate-400 dark:text-slate-600" />
                           )}
                         </a>
                       </li>
@@ -182,21 +181,21 @@ export default function Contact() {
           {contactLinks.map((link, i) => {
             const inner = (
               <>
-                <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-400 group-hover:scale-110 transition-transform">
+                <div className="p-2 rounded-lg bg-indigo-500/10 text-indigo-500 dark:text-indigo-400 group-hover:scale-110 transition-transform">
                   {link.icon}
                 </div>
                 <div className="min-w-0">
                   <p className="text-slate-500 text-xs mb-0.5">{link.label}</p>
-                  <p className="text-slate-300 text-sm font-medium truncate group-hover:text-white transition-colors">
+                  <p className="text-slate-700 dark:text-slate-300 text-sm font-medium truncate group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                     {link.value}
                   </p>
                 </div>
-                <ArrowUpRight size={14} className="ml-auto text-slate-600 group-hover:text-indigo-400 transition-colors shrink-0" />
+                <ArrowUpRight size={14} className="ml-auto text-slate-400 dark:text-slate-600 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 transition-colors shrink-0" />
               </>
             );
 
             const baseClass =
-              'flex items-center gap-4 p-4 rounded-xl border border-[#2a2a38] bg-[#111118] hover:border-indigo-500/30 transition-all duration-300 group text-left w-full';
+              'flex items-center gap-4 p-4 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/30 transition-all duration-300 group text-left w-full';
 
             return (
               <motion.div
