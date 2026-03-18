@@ -23,7 +23,7 @@ export default function Experience() {
 
         <div className="relative">
           {/* Vertical timeline line */}
-          <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/40 dark:via-[#2a2a38] via-slate-300 to-transparent" />
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-linear-to-b from-indigo-500/40 dark:via-[#2a2a38] via-slate-300 to-transparent" />
 
           <div className="flex flex-col gap-10">
             {experience.map((job, i) => (
