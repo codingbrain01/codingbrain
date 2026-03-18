@@ -1,7 +1,7 @@
 export const personal = {
   name: 'Jade Camden R. Francisco',
   shortName: 'Camden Francisco',
-  title: 'Full Stack & Desktop Engineer',
+  title: 'Full Stack Engineer',
   subtitle: 'B.S. Computer Engineering',
   email: 'codingbrain01@gmail.com',
   phone: '09062296205',
