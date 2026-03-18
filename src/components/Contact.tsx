@@ -58,7 +58,7 @@ const mailApps = [
 const contactLinks = [
   { icon: <Mail size={18} />,    label: 'Email',    value: email,                          isEmail: true  },
   { icon: <Phone size={18} />,   label: 'Phone',    value: personal.phone,                 href: `tel:${personal.phone}`, isEmail: false },
-  { icon: <GitHubIcon />,   label: 'GitHub',   value: 'github.com/jade-francisco',     href: '#', isEmail: false },
+  { icon: <GitHubIcon />,   label: 'GitHub',   value: 'github.com/codingbrain01',                  href: personal.github,   isEmail: false },
   { icon: <LinkedInIcon />, label: 'LinkedIn', value: 'linkedin.com/in/camden-francisco-1615033b8', href: personal.linkedin, isEmail: false },
 ];
 
@@ -210,7 +210,7 @@ export default function Contact() {
                     {inner}
                   </button>
                 ) : (
-                  <a href={'href' in link ? link.href : '#'} className={baseClass}>
+                  <a href={'href' in link ? link.href : '#'} target="_blank" rel="noopener noreferrer" className={baseClass}>
                     {inner}
                   </a>
                 )}

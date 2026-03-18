@@ -7,6 +7,7 @@ export const personal = {
   phone: '09062296205',
   location: 'Remote',
   linkedin: 'https://www.linkedin.com/in/camden-francisco-1615033b8',
+  github: 'https://github.com/codingbrain01',
   summary:
     'Detail-oriented Computer Engineer specializing in the end-to-end development of high-performance web and desktop applications. Expert in React, TypeScript, and Electron, with a proven track record of architecting automated systems—from Vite-driven frontends to Telegram-integrated backend pipelines. Adept at managing full product lifecycles, including infrastructure, server deployment, and native "Kiosk Mode" desktop solutions.',
 };
