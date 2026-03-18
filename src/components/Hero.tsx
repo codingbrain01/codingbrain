@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import { ArrowDown, Mail } from 'lucide-react';
 import { personal } from '../data/resume';
 import { openMailPicker } from '../utils/mailPicker';
@@ -96,12 +95,12 @@ export default function Hero() {
           animate="show"
           className="flex flex-wrap items-center justify-center gap-4 mb-14"
         >
-          <Link
-            to="/projects"
+          <button
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-7 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 glow-strong hover:scale-105"
           >
             View My Work
-          </Link>
+          </button>
           <button
             onClick={openMailPicker}
             className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
@@ -170,8 +169,8 @@ export default function Hero() {
         transition={{ delay: 1.2, duration: 0.6 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <Link
-          to="/about"
+        <button
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
         >
           <span className="text-xs font-mono">scroll</span>
@@ -181,7 +180,7 @@ export default function Hero() {
           >
             <ArrowDown size={16} />
           </motion.div>
-        </Link>
+        </button>
       </motion.div>
     </section>
   );

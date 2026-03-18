@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { openMailPicker } from '../utils/mailPicker';
 
 const links = [
-  { label: 'About',      to: '/about' },
-  { label: 'Skills',     to: '/skills' },
-  { label: 'Experience', to: '/experience' },
-  { label: 'Projects',   to: '/projects' },
-  { label: 'Contact',    to: '/contact' },
+  { label: 'About',      to: '/about',      id: 'about' },
+  { label: 'Skills',     to: '/skills',     id: 'skills' },
+  { label: 'Experience', to: '/experience', id: 'experience' },
+  { label: 'Projects',   to: '/projects',   id: 'projects' },
+  { label: 'Contact',    to: '/contact',    id: 'contact' },
 ];
 
 export default function Navbar() {
@@ -18,6 +18,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,8 +26,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => { setOpen(false); }, [pathname]);
+  function scrollTo(id: string, path: string) {
+    setOpen(false);
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    navigate(path, { replace: true });
+  }
 
   return (
     <motion.header
@@ -41,9 +45,12 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="font-mono text-sm font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors">
+        <button
+          onClick={() => scrollTo('hero', '/')}
+          className="font-mono text-sm font-medium text-indigo-500 dark:text-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-300 transition-colors"
+        >
           <span className="text-slate-400 dark:text-slate-500">~/</span>camden-francisco
-        </Link>
+        </button>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
@@ -56,8 +63,8 @@ export default function Navbar() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + i * 0.07 }}
               >
-                <Link
-                  to={link.to}
+                <button
+                  onClick={() => scrollTo(link.id, link.to)}
                   className={`text-sm transition-colors relative group ${
                     active
                       ? 'text-indigo-500 dark:text-indigo-400'
@@ -66,7 +73,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   <span className={`absolute -bottom-0.5 left-0 h-px bg-indigo-500 transition-all duration-300 ${active ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                </Link>
+                </button>
               </motion.li>
             );
           })}
@@ -120,8 +127,8 @@ export default function Navbar() {
             <ul className="flex flex-col px-6 py-4 gap-4">
               {links.map((link) => (
                 <li key={link.to}>
-                  <Link
-                    to={link.to}
+                  <button
+                    onClick={() => scrollTo(link.id, link.to)}
                     className={`text-sm transition-colors ${
                       pathname === link.to
                         ? 'text-indigo-500 dark:text-indigo-400 font-medium'
@@ -129,7 +136,7 @@ export default function Navbar() {
                     }`}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 </li>
               ))}
               <li>
