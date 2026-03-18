@@ -1,5 +1,13 @@
+type NavigateFn = (path: string) => void;
+let _navigate: NavigateFn | null = null;
+
+export function setNavigate(fn: NavigateFn) {
+  _navigate = fn;
+}
+
 export function openMailPicker() {
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  // Small delay so the scroll starts before the picker pops open
-  setTimeout(() => window.dispatchEvent(new CustomEvent('openMailPicker')), 200);
+  if (window.location.pathname !== '/contact') {
+    _navigate?.('/contact');
+  }
+  setTimeout(() => window.dispatchEvent(new CustomEvent('openMailPicker')), 350);
 }

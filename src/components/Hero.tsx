@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowDown, Mail } from 'lucide-react';
 import { personal } from '../data/resume';
 import { openMailPicker } from '../utils/mailPicker';
@@ -95,12 +96,12 @@ export default function Hero() {
           animate="show"
           className="flex flex-wrap items-center justify-center gap-4 mb-14"
         >
-          <a
-            href="#projects"
+          <Link
+            to="/projects"
             className="px-7 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 glow-strong hover:scale-105"
           >
             View My Work
-          </a>
+          </Link>
           <button
             onClick={openMailPicker}
             className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
@@ -163,21 +164,25 @@ export default function Hero() {
       </div>
 
       {/* Scroll cue */}
-      <motion.a
-        href="#about"
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <span className="text-xs font-mono">scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+        <Link
+          to="/about"
+          className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
         >
-          <ArrowDown size={16} />
-        </motion.div>
-      </motion.a>
+          <span className="text-xs font-mono">scroll</span>
+          <motion.div
+            animate={{ y: [0, 6, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
+          >
+            <ArrowDown size={16} />
+          </motion.div>
+        </Link>
+      </motion.div>
     </section>
   );
 }
