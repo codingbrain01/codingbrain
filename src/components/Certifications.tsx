@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { X, ExternalLink, BadgeCheck } from 'lucide-react';
 
 const cert = {
@@ -11,37 +13,35 @@ const cert = {
   skills: ['Vite', 'HMR', 'Code Splitting', 'React', 'Build Optimization'],
   image: '/UC-11c40174-c357-4621-9694-cf1530cb055f.jpg',
   credentialId: 'UC-11c40174-c357-4621-9694-cf1530cb055f',
+  verifyUrl: 'https://ude.my/UC-11c40174-c357-4621-9694-cf1530cb055f/',
 };
 
 export default function Certifications() {
   const [lightbox, setLightbox] = useState(false);
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section id="certifications" className="py-28 px-6">
-      <div className="max-w-5xl mx-auto">
+    <section id="certifications" className="py-28 px-6" ref={ref}>
+      <div className="max-w-6xl mx-auto">
 
-        {/* Heading */}
+        {/* Heading — matches other sections */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14 text-center"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-3 mb-12"
         >
-          <p className="text-xs font-semibold tracking-widest uppercase text-indigo-400 dark:text-indigo-400 mb-2">
-            Credentials
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">
-            Certifications
-          </h2>
+          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">05.</span>
+          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Certifications</h2>
+          <div className="flex-1 h-px bg-(--border) ml-4" />
         </motion.div>
 
         {/* Card */}
         <motion.div
           initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.55, delay: 0.1 }}
           className="flex flex-col sm:flex-row gap-0 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700/60 bg-white dark:bg-slate-800/50 shadow-lg"
         >
           {/* Thumbnail */}
@@ -98,12 +98,22 @@ export default function Certifications() {
               <span className="text-xs text-slate-400 dark:text-slate-500">
                 Issued {cert.year} · ID: {cert.credentialId.slice(0, 8)}…
               </span>
-              <button
-                onClick={() => setLightbox(true)}
-                className="text-xs font-semibold text-indigo-500 hover:text-indigo-400 transition-colors flex items-center gap-1"
-              >
-                View Certificate <ExternalLink size={12} />
-              </button>
+              <div className="flex items-center gap-3">
+                <a
+                  href={cert.verifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold text-emerald-500 hover:text-emerald-400 transition-colors flex items-center gap-1"
+                >
+                  Verify <ExternalLink size={12} />
+                </a>
+                <button
+                  onClick={() => setLightbox(true)}
+                  className="text-xs font-semibold text-indigo-500 hover:text-indigo-400 transition-colors flex items-center gap-1"
+                >
+                  View <ExternalLink size={12} />
+                </button>
+              </div>
             </div>
           </div>
         </motion.div>

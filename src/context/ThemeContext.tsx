@@ -22,8 +22,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
+  function toggle() {
+    const root = document.documentElement;
+    root.classList.add('theme-switching');
+    setTheme(t => t === 'dark' ? 'light' : 'dark');
+    setTimeout(() => root.classList.remove('theme-switching'), 350);
+  }
+
   return (
-    <ThemeContext.Provider value={{ theme, toggle: () => setTheme(t => t === 'dark' ? 'light' : 'dark') }}>
+    <ThemeContext.Provider value={{ theme, toggle }}>
       {children}
     </ThemeContext.Provider>
   );

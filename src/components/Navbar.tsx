@@ -6,11 +6,12 @@ import { useTheme } from '../context/ThemeContext';
 import { openMailPicker } from '../utils/mailPicker';
 
 const links = [
-  { label: 'About',      to: '/about',      id: 'about' },
-  { label: 'Skills',     to: '/skills',     id: 'skills' },
-  { label: 'Experience', to: '/experience', id: 'experience' },
-  { label: 'Projects',   to: '/projects',   id: 'projects' },
-  { label: 'Contact',    to: '/contact',    id: 'contact' },
+  { label: 'About',           to: '/about',           id: 'about' },
+  { label: 'Skills',          to: '/skills',           id: 'skills' },
+  { label: 'Experience',      to: '/experience',       id: 'experience' },
+  { label: 'Projects',        to: '/projects',         id: 'projects' },
+  { label: 'Certifications',  to: '/certifications',   id: 'certifications' },
+  { label: 'Contact',         to: '/contact',          id: 'contact' },
 ];
 
 export default function Navbar() {

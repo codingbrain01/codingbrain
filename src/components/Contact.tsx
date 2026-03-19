@@ -105,7 +105,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
           className="flex items-center justify-center gap-3 mb-12"
         >
-          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">05.</span>
+          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">06.</span>
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
         </motion.div>
 
