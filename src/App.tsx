@@ -8,15 +8,17 @@ import About from './components/About';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 
 const sections = [
-  { id: 'hero',       path: '/' },
-  { id: 'about',      path: '/about' },
-  { id: 'skills',     path: '/skills' },
-  { id: 'experience', path: '/experience' },
-  { id: 'projects',   path: '/projects' },
-  { id: 'contact',    path: '/contact' },
+  { id: 'hero',             path: '/' },
+  { id: 'about',            path: '/about' },
+  { id: 'skills',           path: '/skills' },
+  { id: 'experience',       path: '/experience' },
+  { id: 'projects',         path: '/projects' },
+  { id: 'certifications',   path: '/certifications' },
+  { id: 'contact',          path: '/contact' },
 ];
 
 export default function App() {
@@ -68,6 +70,7 @@ export default function App() {
         <Skills />
         <Experience />
         <Projects />
+        <Certifications />
         <Contact />
       </main>
       <Footer />
