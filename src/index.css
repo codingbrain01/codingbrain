@@ -43,6 +43,7 @@
 /* ─── Base ─────────────────────────────────────────────────────────── */
 @layer base {
   * { scroll-behavior: smooth; }
+  button, [role="button"] { cursor: pointer; }
 
   body {
     background-color: var(--bg);
