@@ -165,9 +165,18 @@ export default function Projects() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-slate-500 text-sm mb-12"
+          className="text-slate-500 text-sm mb-3"
         >
           Highlighted builds — from native kiosk environments to automated messaging pipelines.
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-slate-400 dark:text-slate-500 text-xs italic mb-12"
+        >
+          Note: Additional client work (13+ landing pages) is not publicly listed in accordance with company privacy and contractual confidentiality agreements.
         </motion.p>
 
         <div className="flex flex-col gap-8 mb-16">
