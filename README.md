@@ -48,7 +48,7 @@ Personal portfolio showcasing full-stack and desktop engineering work — built 
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
 - Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices)
 - Certifications section with lightbox viewer + Udemy verification link
-- Fully responsive, mobile-first layout
+- Fully responsive, mobile-first layout — no horizontal overflow, tested on Vivo V25e
 
 ## Getting Started
 
