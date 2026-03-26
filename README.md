@@ -30,7 +30,7 @@ Personal portfolio showcasing full-stack and desktop engineering work — built 
 | Build tool | Vite 8 |
 | Styling | Tailwind CSS v4 |
 | Animations | Framer Motion |
-| Routing | React Router v7 (scroll-sync + URL updates) |
+| Routing | React Router v7 (1-page SPA, scroll-synced URLs) |
 | Deployment | Vercel |
 
 ## Highlighted Projects
@@ -45,8 +45,8 @@ Personal portfolio showcasing full-stack and desktop engineering work — built 
 
 - `>_` terminal-style favicon
 - Dark / light mode with synchronized 300ms transitions
-- Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, etc.)
-- Mail picker — choose Gmail, Outlook, Yahoo, or default app
+- Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
+- Mail picker — choose Gmail, Outlook, Yahoo, or default app (bottom sheet on mobile)
 - Certifications section with lightbox viewer + Udemy verification link
 - Fully responsive, mobile-first layout
 

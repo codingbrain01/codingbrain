@@ -146,7 +146,7 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 4, scale: 0.97 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute left-1/2 -translate-x-1/2 mt-3 w-52 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden z-50"
+                  className="fixed bottom-4 left-4 right-4 sm:absolute sm:bottom-auto sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:top-full sm:mt-3 sm:w-52 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden z-50"
                 >
                   <p className="text-xs text-slate-500 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
                     Open with…
