@@ -4,7 +4,12 @@ import { GraduationCap, Briefcase, Code2, Server } from 'lucide-react';
 import { personal, education } from '../data/resume';
 
 const stats = [
-  { icon: <Code2 size={20} />, value: '13+', label: 'Landing Pages Shipped' },
+  {
+    icon: <Code2 size={20} />,
+    value: '13+',
+    label: 'Landing Pages Shipped',
+    disclaimer: 'Projects are under NDA and cannot be publicly shared per client contract agreements.',
+  },
   { icon: <Briefcase size={20} />, value: '5+', label: 'Years of Experience' },
   { icon: <Server size={20} />, value: '99.9%', label: 'System Uptime Maintained' },
   { icon: <GraduationCap size={20} />, value: '2023', label: 'B.S. CompE Graduate' },
@@ -67,19 +72,24 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="grid grid-cols-2 gap-4"
           >
-            {stats.map(({ icon, value, label }, i) => (
+            {stats.map(({ icon, value, label, disclaimer }, i) => (
               <motion.div
                 key={label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.08 }}
-                className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/30 transition-colors group"
+                className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/30 transition-colors group flex flex-col"
               >
                 <div className="text-indigo-500 dark:text-indigo-400 mb-3 group-hover:scale-110 transition-transform w-fit">
                   {icon}
                 </div>
                 <p className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{value}</p>
                 <p className="text-slate-500 text-xs leading-tight">{label}</p>
+                {disclaimer && (
+                  <p className="mt-2 text-[10px] leading-snug text-slate-400 dark:text-slate-600 italic border-t border-(--border) pt-2">
+                    {disclaimer}
+                  </p>
+                )}
               </motion.div>
             ))}
           </motion.div>
