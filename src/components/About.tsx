@@ -86,7 +86,7 @@ export default function About() {
                 <p className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{value}</p>
                 <p className="text-slate-500 text-xs leading-tight">{label}</p>
                 {disclaimer && (
-                  <p className="mt-2 text-[10px] leading-snug text-slate-400 dark:text-slate-600 italic border-t border-(--border) pt-2">
+                  <p className="mt-3 text-[11px] leading-snug text-slate-500 dark:text-slate-400 italic border-t border-(--border) pt-3">
                     {disclaimer}
                   </p>
                 )}
