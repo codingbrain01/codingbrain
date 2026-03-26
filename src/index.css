@@ -45,6 +45,10 @@
   * { scroll-behavior: smooth; }
   button, [role="button"] { cursor: pointer; }
 
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     background-color: var(--bg);
     color: #0f172a;
