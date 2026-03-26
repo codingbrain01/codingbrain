@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, ArrowUpRight, ChevronDown } from 'lucide-react';
 
@@ -63,18 +64,24 @@ const contactLinks = [
   { icon: <LinkedInIcon />,      label: 'LinkedIn', value: 'linkedin.com/in/camden-francisco-1615033b8',   href: personal.linkedin, isEmail: false },
 ];
 
+const DROPDOWN_WIDTH = 208; // w-52 = 13rem = 208px
+
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   const [pickerOpen, setPickerOpen] = useState(false);
-  const pickerRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const sayHelloRef = useRef<HTMLDivElement>(null);
+  const [btnRect, setBtnRect] = useState<DOMRect | null>(null);
 
+  // Close on outside click — checks both button and dropdown
   useEffect(() => {
     if (!pickerOpen) return;
     const handler = (e: MouseEvent) => {
-      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+      const t = e.target as Node;
+      if (!buttonRef.current?.contains(t) && !dropdownRef.current?.contains(t)) {
         setPickerOpen(false);
       }
     };
@@ -82,19 +89,86 @@ export default function Contact() {
     return () => document.removeEventListener('mousedown', handler);
   }, [pickerOpen]);
 
+  // Triggered by "Hire me" / "Get in Touch" from other sections
   useEffect(() => {
     const handler = () => {
-      setPickerOpen(true);
       sayHelloRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
+        setPickerOpen(true);
+      }, 400);
     };
     window.addEventListener('openMailPicker', handler);
     return () => window.removeEventListener('openMailPicker', handler);
   }, []);
 
+  function handleToggle() {
+    if (!pickerOpen && buttonRef.current) {
+      setBtnRect(buttonRef.current.getBoundingClientRect());
+    }
+    setPickerOpen(v => !v);
+  }
+
   function openPicker() {
     sayHelloRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setPickerOpen(true);
+    setTimeout(() => {
+      if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
+      setPickerOpen(true);
+    }, 400);
   }
+
+  // Desktop: position dropdown below the button using viewport coords (fixed)
+  // Mobile: CSS handles it as a bottom sheet
+  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 640;
+  const dropdownStyle: React.CSSProperties | undefined =
+    isDesktop && btnRect
+      ? {
+          position: 'fixed',
+          top: btnRect.bottom + 8,
+          left: Math.max(8, btnRect.left + btnRect.width / 2 - DROPDOWN_WIDTH / 2),
+          width: DROPDOWN_WIDTH,
+          zIndex: 9999,
+        }
+      : undefined;
+
+  const dropdownContent = (
+    <motion.div
+      ref={dropdownRef}
+      style={dropdownStyle}
+      initial={{ opacity: 0, y: 6, scale: 0.97 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 4, scale: 0.97 }}
+      transition={{ duration: 0.15 }}
+      className={
+        dropdownStyle
+          ? 'rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
+          : 'fixed bottom-4 left-4 right-4 z-[9999] rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
+      }
+    >
+      <p className="text-xs text-slate-500 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
+        Open with…
+      </p>
+      <ul className="py-1">
+        {mailApps.map((app) => (
+          <li key={app.label}>
+            <a
+              href={app.href}
+              target={app.label !== 'Default mail app' ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              onClick={() => setPickerOpen(false)}
+              className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-indigo-500/10 hover:text-slate-900 dark:hover:text-white transition-colors"
+            >
+              {app.icon}
+              {app.label}
+              {app.label !== 'Default mail app' && (
+                <ArrowUpRight size={12} className="ml-auto text-slate-400 dark:text-slate-600" />
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
 
   return (
     <section id="contact" className="py-28 px-6" ref={ref}>
@@ -118,7 +192,7 @@ export default function Contact() {
           Whether you have a project in mind, want to discuss a role, or just want to connect — my inbox is always open.
         </motion.p>
 
-        {/* Say Hello — the only mail picker */}
+        {/* Say Hello */}
         <motion.div
           ref={sayHelloRef}
           initial={{ opacity: 0, scale: 0.9 }}
@@ -126,54 +200,24 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-14 flex justify-center"
         >
-          <div ref={pickerRef} className="relative inline-block">
-            <button
-              onClick={() => setPickerOpen((v) => !v)}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 glow-strong hover:scale-105"
-            >
-              <Mail size={18} />
-              Say Hello
-              <ChevronDown
-                size={14}
-                className={`transition-transform duration-200 ${pickerOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
+          <button
+            ref={buttonRef}
+            onClick={handleToggle}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 glow-strong hover:scale-105"
+          >
+            <Mail size={18} />
+            Say Hello
+            <ChevronDown
+              size={14}
+              className={`transition-transform duration-200 ${pickerOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
 
-            <AnimatePresence>
-              {pickerOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 6, scale: 0.97 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 4, scale: 0.97 }}
-                  transition={{ duration: 0.15 }}
-                  className="fixed bottom-4 left-4 right-4 sm:absolute sm:bottom-auto sm:left-1/2 sm:right-auto sm:-translate-x-1/2 sm:top-full sm:mt-3 sm:w-52 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden z-50"
-                >
-                  <p className="text-xs text-slate-500 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
-                    Open with…
-                  </p>
-                  <ul className="py-1">
-                    {mailApps.map((app) => (
-                      <li key={app.label}>
-                        <a
-                          href={app.href}
-                          target={app.label !== 'Default mail app' ? '_blank' : undefined}
-                          rel="noopener noreferrer"
-                          onClick={() => setPickerOpen(false)}
-                          className="flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 dark:text-slate-300 hover:bg-indigo-500/10 hover:text-slate-900 dark:hover:text-white transition-colors"
-                        >
-                          {app.icon}
-                          {app.label}
-                          {app.label !== 'Default mail app' && (
-                            <ArrowUpRight size={12} className="ml-auto text-slate-400 dark:text-slate-600" />
-                          )}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* Portal — rendered in document.body, escapes all transform ancestors */}
+          {createPortal(
+            <AnimatePresence>{pickerOpen && dropdownContent}</AnimatePresence>,
+            document.body
+          )}
         </motion.div>
 
         {/* Contact links grid */}

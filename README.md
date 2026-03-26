@@ -46,7 +46,7 @@ Personal portfolio showcasing full-stack and desktop engineering work — built 
 - `>_` terminal-style favicon
 - Dark / light mode with synchronized 300ms transitions
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
-- Mail picker — choose Gmail, Outlook, Yahoo, or default app (bottom sheet on mobile)
+- Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices)
 - Certifications section with lightbox viewer + Udemy verification link
 - Fully responsive, mobile-first layout
 
