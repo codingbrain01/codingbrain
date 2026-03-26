@@ -79,7 +79,7 @@ export default function About() {
                   {icon}
                 </div>
                 <p className="text-3xl font-extrabold text-slate-900 dark:text-white mb-1">{value}</p>
-                <p className="text-slate-500 text-xs leading-tight">{label}</p>
+                <p className="text-slate-600 dark:text-slate-400 text-xs leading-tight">{label}</p>
               </motion.div>
             ))}
           </motion.div>

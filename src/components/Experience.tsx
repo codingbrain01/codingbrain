@@ -50,7 +50,7 @@ export default function Experience() {
                         </span>
                       )}
                     </div>
-                    <span className="text-xs font-mono text-slate-500 shrink-0 mt-1">{job.period}</span>
+                    <span className="text-xs font-mono text-slate-600 dark:text-slate-400 shrink-0 mt-1">{job.period}</span>
                   </div>
 
                   <ul className="space-y-2">

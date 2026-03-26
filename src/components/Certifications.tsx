@@ -68,7 +68,7 @@ export default function Certifications() {
                 <BadgeCheck size={13} />
                 {cert.issuer}
               </span>
-              <span className="text-xs text-slate-400 dark:text-slate-500">{cert.category}</span>
+              <span className="text-xs text-slate-500 dark:text-slate-400">{cert.category}</span>
             </div>
 
             {/* Title */}
@@ -95,7 +95,7 @@ export default function Certifications() {
 
             {/* Footer row */}
             <div className="flex items-center justify-between pt-1">
-              <span className="text-xs text-slate-400 dark:text-slate-500">
+              <span className="text-xs text-slate-500 dark:text-slate-400">
                 Issued {cert.year} · ID: {cert.credentialId.slice(0, 8)}…
               </span>
               <div className="flex items-center gap-3">

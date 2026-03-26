@@ -142,10 +142,10 @@ export default function Contact() {
       className={
         dropdownStyle
           ? 'rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
-          : 'fixed bottom-4 left-4 right-4 z-[9999] rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
+          : 'fixed bottom-4 left-4 right-4 z-9999 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
       }
     >
-      <p className="text-xs text-slate-500 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
+      <p className="text-xs text-slate-600 dark:text-slate-400 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
         Open with…
       </p>
       <ul className="py-1">
@@ -229,7 +229,7 @@ export default function Contact() {
                   {link.icon}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-slate-500 text-xs mb-0.5">{link.label}</p>
+                  <p className="text-slate-600 dark:text-slate-400 text-xs mb-0.5">{link.label}</p>
                   <p className="text-slate-700 dark:text-slate-300 text-sm font-medium truncate group-hover:text-slate-900 dark:group-hover:text-white transition-colors">
                     {link.value}
                   </p>

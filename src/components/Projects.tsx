@@ -79,7 +79,7 @@ function FeaturedProject({
         {/* Highlights */}
         <div className={isEven ? '' : '[direction:ltr]'}>
           <div className="p-6 rounded-xl border bg-(--bg)" style={{ borderColor: `${project.accentColor}22` }}>
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Key Features</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-600 dark:text-slate-400 mb-4">Key Features</p>
             <ul className="space-y-3">
               {project.highlights.map((h, i) => (
                 <li key={i} className="flex gap-3 text-sm text-slate-700 dark:text-slate-300">
@@ -128,7 +128,7 @@ function SmallProject({
         <ExternalLink size={16} className="text-slate-400 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors" />
       </div>
       <h3 className="text-slate-900 dark:text-white font-semibold mb-2">{project.title}</h3>
-      <p className="text-slate-500 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
+      <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
       <div className="flex flex-wrap gap-1.5">
         {project.tags.slice(0, 4).map((tag) => (
           <span key={tag} className="px-2 py-0.5 rounded text-xs font-mono bg-(--surface-2) border border-(--border) text-slate-600 dark:text-slate-400">
@@ -165,7 +165,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-slate-500 text-sm mb-3"
+          className="text-slate-600 dark:text-slate-400 text-sm mb-3"
         >
           Highlighted builds — from native kiosk environments to automated messaging pipelines.
         </motion.p>
@@ -174,7 +174,7 @@ export default function Projects() {
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-slate-400 dark:text-slate-500 text-xs italic mb-12"
+          className="text-slate-500 dark:text-slate-400 text-xs italic mb-12"
         >
           Note: Additional client work (13+ landing pages) is not publicly listed in accordance with company privacy and contractual confidentiality agreements.
         </motion.p>
@@ -191,7 +191,7 @@ export default function Projects() {
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.5 }}
-              className="text-slate-400 dark:text-slate-600 text-xs font-mono uppercase tracking-widest mb-6"
+              className="text-slate-500 dark:text-slate-400 text-xs font-mono uppercase tracking-widest mb-6"
             >
               Other notable work
             </motion.p>
