@@ -147,6 +147,8 @@ function SmallProject({
   index: number;
   inView: boolean;
 }) {
+  const link = project.url ?? project.github;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -158,13 +160,8 @@ function SmallProject({
         <div className="p-2.5 rounded-lg" style={{ background: `${project.accentColor}18`, color: project.accentColor }}>
           {iconMap[project.icon]}
         </div>
-        {(project.url ?? project.github) ? (
-          <a
-            href={project.url ?? project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
-          >
+        {link ? (
+          <a href={link} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()}>
             <ExternalLink size={16} className="text-slate-400 dark:text-slate-500 group-hover:text-indigo-500 transition-colors" />
           </a>
         ) : (
