@@ -87,6 +87,26 @@ export const experience = [
 
 export const projects = [
   {
+    id: 'crockoncrockai',
+    featured: true,
+    badge: 'Personal Project',
+    title: 'CrockOnCrockAI',
+    tagline: 'React · TypeScript · Groq · Llama 3.3 70B · Vercel',
+    description:
+      'A personal AI chat assistant built for programming help, powered by Llama 3.3 70B via Groq\'s ultra-fast inference platform. Features real-time token streaming, persistent conversation history, dual owner/visitor modes with rate limiting, and a clean chat UI — deployed serverlessly on Vercel.',
+    highlights: [
+      'Real-time streaming responses via Groq SDK (token-by-token display)',
+      'Persistent conversation storage with owner and visitor session modes',
+      'Daily rate limiting — 30 requests for visitors, 1,000 for owner',
+      'Input sanitization, keyboard shortcuts, and serverless Vercel backend',
+    ],
+    tags: ['React 19', 'TypeScript', 'Groq SDK', 'Llama 3.3 70B', 'Vite', 'Tailwind CSS', 'Vercel'],
+    accentColor: '#8b5cf6',
+    icon: 'bot',
+    url: 'https://crockoncrockai.vercel.app',
+    github: 'https://github.com/codingbrain01/crockoncrockai',
+  },
+  {
     id: 'kiosk',
     featured: true,
     badge: 'Featured',
@@ -103,6 +123,8 @@ export const projects = [
     tags: ['Electron.js', 'TypeScript', 'Kiosk Mode', 'Windows API', 'VoIP', 'Node.js'],
     accentColor: '#6366f1',
     icon: 'monitor',
+    url: undefined,
+    github: undefined,
   },
   {
     id: 'telegram',
@@ -121,6 +143,8 @@ export const projects = [
     tags: ['Node.js', 'Telegram Bot API', 'TypeScript', 'REST APIs', 'Automation'],
     accentColor: '#0ea5e9',
     icon: 'send',
+    url: undefined,
+    github: undefined,
   },
   {
     id: 'landing-pages',
@@ -139,6 +163,8 @@ export const projects = [
     tags: ['React', 'Vite', 'TailwindCSS', 'Hostinger', 'SSL', 'SEO'],
     accentColor: '#10b981',
     icon: 'layout',
+    url: undefined,
+    github: undefined,
   },
 ];
 

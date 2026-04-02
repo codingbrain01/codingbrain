@@ -1,12 +1,19 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Monitor, Send, Layout, CheckCircle2, ExternalLink } from 'lucide-react';
+import { Monitor, Send, Layout, CheckCircle2, ExternalLink, Bot } from 'lucide-react';
+
+const GitHubIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+  </svg>
+);
 import { projects } from '../data/resume';
 
 const iconMap: Record<string, React.ReactNode> = {
   monitor: <Monitor size={24} />,
-  send: <Send size={24} />,
-  layout: <Layout size={24} />,
+  send:    <Send size={24} />,
+  layout:  <Layout size={24} />,
+  bot:     <Bot size={24} />,
 };
 
 function FeaturedProject({
@@ -58,7 +65,7 @@ function FeaturedProject({
           </p>
           <p className="text-slate-600 dark:text-slate-400 leading-relaxed text-sm mb-6">{project.description}</p>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 mb-5">
             {project.tags.map((tag) => (
               <span
                 key={tag}
@@ -74,6 +81,32 @@ function FeaturedProject({
               </span>
             ))}
           </div>
+
+          {(project.url || project.github) && (
+            <div className="flex items-center gap-3">
+              {project.url && (
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
+                  style={{ borderColor: `${project.accentColor}40`, color: project.accentColor }}
+                >
+                  <ExternalLink size={12} /> Live Demo
+                </a>
+              )}
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border border-(--border) text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:border-slate-400 dark:hover:border-slate-500 transition-colors"
+                >
+                  <GitHubIcon /> Source
+                </a>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Highlights */}
@@ -125,7 +158,18 @@ function SmallProject({
         <div className="p-2.5 rounded-lg" style={{ background: `${project.accentColor}18`, color: project.accentColor }}>
           {iconMap[project.icon]}
         </div>
-        <ExternalLink size={16} className="text-slate-400 dark:text-slate-600 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors" />
+        {(project.url ?? project.github) ? (
+          <a
+            href={project.url ?? project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+          >
+            <ExternalLink size={16} className="text-slate-400 dark:text-slate-500 group-hover:text-indigo-500 transition-colors" />
+          </a>
+        ) : (
+          <ExternalLink size={16} className="text-slate-400 dark:text-slate-500 transition-colors" />
+        )}
       </div>
       <h3 className="text-slate-900 dark:text-white font-semibold mb-2">{project.title}</h3>
       <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
