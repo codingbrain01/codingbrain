@@ -20,7 +20,7 @@
 
 ## Overview
 
-Personal portfolio showcasing full-stack and desktop engineering work — built with a focus on performance, clean UI, and smooth UX. Features a dark/light theme, scroll-synced routing, and a custom mail picker.
+Personal portfolio built from scratch showcasing full-stack and desktop engineering work — designed and developed with a focus on performance, clean UI, and smooth UX. Features a dark/light theme, scroll-synced routing, and a custom mail picker.
 
 ## Stack
 
@@ -33,7 +33,10 @@ Personal portfolio showcasing full-stack and desktop engineering work — built 
 | Routing | React Router v7 (1-page SPA, scroll-synced URLs) |
 | Deployment | Vercel |
 
-## Highlighted Projects
+## Projects
+
+**CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app) · [Source](https://github.com/codingbrain01/crockoncrockai)
+> Personal AI chat assistant powered by Llama 3.3 70B on Groq — real-time token streaming, persistent conversations, rate limiting, and serverless Vercel backend.
 
 **Native Kiosk Monitoring System**
 > Secure Windows desktop app built with Electron for driver compliance — restricted system access, VoIP calling, and real-time agent communication.

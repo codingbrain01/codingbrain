@@ -89,10 +89,15 @@ function FeaturedProject({
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full border transition-colors"
-                  style={{ borderColor: `${project.accentColor}40`, color: project.accentColor }}
+                  className="relative inline-flex items-center gap-2 text-sm font-semibold px-5 py-2 rounded-full text-white shadow-lg transition-all duration-200 hover:scale-105 hover:brightness-110"
+                  style={{
+                    background: `linear-gradient(135deg, ${project.accentColor}, ${project.accentColor}cc)`,
+                    boxShadow: `0 0 16px ${project.accentColor}55, 0 4px 12px ${project.accentColor}33`,
+                  }}
                 >
-                  <ExternalLink size={12} /> Live Demo
+                  <span className="absolute inset-0 rounded-full animate-ping opacity-20"
+                    style={{ background: project.accentColor }} />
+                  <ExternalLink size={14} /> Live Demo
                 </a>
               )}
               {project.github && (
