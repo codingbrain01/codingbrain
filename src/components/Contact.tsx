@@ -172,17 +172,18 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-28 px-6" ref={ref}>
-      <div className="max-w-3xl mx-auto text-center">
+      <div className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12 text-left"
+          className="flex items-center gap-3 mb-12"
         >
           <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">06.</span>
           <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
           <div className="flex-1 h-px bg-(--border) ml-4" />
         </motion.div>
+        <div className="max-w-3xl mx-auto text-center">
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -261,6 +262,7 @@ export default function Contact() {
               </motion.div>
             );
           })}
+        </div>
         </div>
       </div>
     </section>
