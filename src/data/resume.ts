@@ -103,7 +103,7 @@ export const projects = [
     tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'React Router', 'Supabase-ready'],
     accentColor: '#f59e0b',
     icon: 'clipboardList',
-    url: 'https://attendanctrackerphi.vercel.app/',
+    url: 'https://attendanctrackerphi.vercel.app/login',
     github: 'https://github.com/codingbrain01/attendance-tracker',
   },
   {
