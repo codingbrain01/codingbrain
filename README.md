@@ -35,6 +35,9 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 
 ## Projects
 
+**AttendTrack** · [Live Demo](https://attendanctrackerphi.vercel.app/login) · [Source](https://github.com/codingbrain01/attendance-tracker)
+> Role-based attendance tracking system — clock in/out, break tracking, shift management, and full RBAC (Employee / Admin / Main Control). No backend required; service-layer architecture ready for Supabase migration.
+
 **CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app) · [Source](https://github.com/codingbrain01/crockoncrockai)
 > Personal AI chat assistant powered by Llama 3.3 70B on Groq — real-time token streaming, persistent conversations, rate limiting, and serverless Vercel backend.
 

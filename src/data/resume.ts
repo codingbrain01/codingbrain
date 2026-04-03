@@ -87,6 +87,26 @@ export const experience = [
 
 export const projects = [
   {
+    id: 'attendance-tracker',
+    featured: true,
+    badge: 'Available for Sale',
+    title: 'AttendTrack — Attendance Tracker',
+    tagline: 'React · TypeScript · Vite · Tailwind CSS · Role-Based Access',
+    description:
+      'A fully functional, role-based attendance tracking system — no backend required. Employees clock in/out with break tracking, admins manage shifts and view metrics, and a Main Control role handles full account and log management. Built with a service-layer architecture for seamless Supabase migration when needed.',
+    highlights: [
+      'Three-tier RBAC: Employee, Admin, and Main Control roles',
+      'Clock in/out with automatic break deduction and overtime detection',
+      'Full shift management, monthly metrics, and attendance history',
+      'Service-layer architecture — drop-in Supabase backend migration ready',
+    ],
+    tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'React Router', 'Supabase-ready'],
+    accentColor: '#f59e0b',
+    icon: 'clipboardList',
+    url: 'https://attendanctrackerphi.vercel.app/login',
+    github: 'https://github.com/codingbrain01/attendance-tracker',
+  },
+  {
     id: 'crockoncrockai',
     featured: true,
     badge: 'Personal Project',
