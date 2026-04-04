@@ -57,6 +57,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
 - Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices)
 - Certifications section with lightbox viewer + Udemy verification link
+- Floating Telegram chat widget — visitors submit their name, email, preferred callback (Email / Telegram / Viber / WhatsApp / Phone), and message; delivered instantly via `@CamdenPingBot` to a private Telegram DM
 - Fully responsive, mobile-first layout — no horizontal overflow, tested on Vivo V25e
 
 ## Getting Started
@@ -65,6 +66,12 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 npm install --legacy-peer-deps
 npm run dev
 ```
+
+> To test the Telegram contact widget locally, use the Vercel CLI:
+> ```bash
+> vercel dev
+> ```
+> Add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to your Vercel project's environment variables before deploying.
 
 ## Contact
 

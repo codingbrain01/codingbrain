@@ -10,6 +10,7 @@ import Experience from './components/Experience';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
+import TelegramChat from './components/TelegramChat';
 
 const sections = [
   { id: 'hero',             path: '/' },
@@ -74,6 +75,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <TelegramChat />
     </div>
   );
 }
