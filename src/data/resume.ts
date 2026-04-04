@@ -187,6 +187,26 @@ export const projects = [
     github: undefined,
   },
   {
+    id: 'landing-pages-2',
+    featured: false,
+    badge: '',
+    title: 'Landing Page Suite (5+)',
+    tagline: 'Vite · React · TailwindCSS · Hostinger',
+    description:
+      'A second fleet of 5+ responsive landing pages built and deployed for a remote client, maintaining the same standards of mobile-first compatibility and sub-2-second load times.',
+    highlights: [
+      'Sub-2-second load times with Vite production builds',
+      '100% mobile-first responsive layouts',
+      'SSL-secured deployments on Hostinger with custom domains',
+      'SEO-optimized meta and structured data per page',
+    ],
+    tags: ['React', 'Vite', 'TailwindCSS', 'Hostinger', 'SSL', 'SEO'],
+    accentColor: '#10b981',
+    icon: 'layout',
+    url: undefined,
+    github: undefined,
+  },
+  {
     id: 'landing-pages',
     featured: false,
     badge: '',
