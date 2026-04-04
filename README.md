@@ -35,7 +35,10 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 
 ## Projects
 
-**AttendTrack** · [Live Demo](https://attendanctrackerphi.vercel.app/login) · [Source](https://github.com/codingbrain01/attendance-tracker)
+**Utility Hub** · [Live Demo](https://utilityhubphi.vercel.app/) · [Source](https://github.com/codingbrain01/utilityhub)
+> Client-side utility dashboard — weight converter, dev color picker, calculator, px↔rem converter, and Base64 encoder/decoder. Dark/light mode, clipboard copying, and keyboard shortcuts throughout.
+
+**AttendTrack** · [Live Demo](https://attendanctrackerphi.vercel.app/) · [Source](https://github.com/codingbrain01/attendance-tracker)
 > Role-based attendance tracking system — clock in/out, break tracking, shift management, and full RBAC (Employee / Admin / Main Control). No backend required; service-layer architecture ready for Supabase migration.
 
 **CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app) · [Source](https://github.com/codingbrain01/crockoncrockai)

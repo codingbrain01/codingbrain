@@ -87,6 +87,26 @@ export const experience = [
 
 export const projects = [
   {
+    id: 'utilityhub',
+    featured: true,
+    badge: 'Personal Project',
+    title: 'Utility Hub',
+    tagline: 'React · TypeScript · Vite · Tailwind CSS · Client-Side',
+    description:
+      'A streamlined utility dashboard featuring five practical tools: weight conversion, a dev color picker, a quick calculator, px↔rem web unit conversion, and Base64 encoding/decoding. Fully client-side — no backend required — with dark/light mode, clipboard copying, and keyboard shortcuts throughout.',
+    highlights: [
+      'Weight converter with gym-preset buttons (lbs ↔ kg)',
+      'Dev color picker outputting hex, RGB, HSL, and HSB formats',
+      'Full-featured calculator with keyboard input and history',
+      'Base64 encode/decode and px↔rem unit conversion tools',
+    ],
+    tags: ['React 19', 'TypeScript', 'Vite', 'Tailwind CSS', 'Client-Side'],
+    accentColor: '#14b8a6',
+    icon: 'wrench',
+    url: 'https://utilityhubphi.vercel.app/',
+    github: 'https://github.com/codingbrain01/utilityhub',
+  },
+  {
     id: 'attendance-tracker',
     featured: true,
     badge: 'Available for Sale',
