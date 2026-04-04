@@ -4,8 +4,8 @@ import { GraduationCap, Briefcase, Code2, Server } from 'lucide-react';
 import { personal, education } from '../data/resume';
 
 const stats = [
-  { icon: <Code2 size={20} />, value: '13+', label: 'Landing Pages Shipped' },
-  { icon: <Briefcase size={20} />, value: '5+', label: 'Years of Experience' },
+  { icon: <Code2 size={20} />, value: '18+', label: 'Landing Pages Shipped' },
+  { icon: <Briefcase size={20} />, value: '8+', label: 'Years of Experience' },
   { icon: <Server size={20} />, value: '99.9%', label: 'System Uptime Maintained' },
   { icon: <GraduationCap size={20} />, value: '2023', label: 'B.S. CompE Graduate' },
 ];

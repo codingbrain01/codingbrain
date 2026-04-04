@@ -22,6 +22,12 @@
 
 Personal portfolio built from scratch showcasing full-stack and desktop engineering work — designed and developed with a focus on performance, clean UI, and smooth UX. Features a dark/light theme, scroll-synced routing, and a custom mail picker.
 
+## Stats
+
+- 18+ landing pages shipped
+- 8+ years of experience
+- 99.9% system uptime maintained
+
 ## Stack
 
 | Layer | Tech |

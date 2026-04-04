@@ -23,15 +23,23 @@ export const skills = [
   },
   {
     category: 'Backend & Integration',
-    items: ['Node.js', 'Telegram Bot API', 'REST APIs', 'Form-to-Bot Automation'],
+    items: ['Node.js', 'PHP', 'Telegram Bot API', 'REST APIs', 'Form-to-Bot Automation'],
+  },
+  {
+    category: 'Database',
+    items: ['MySQL', 'phpMyAdmin', 'Supabase', 'PostgreSQL'],
   },
   {
     category: 'Infrastructure / DevOps',
     items: ['Hostinger VPS', 'InternetBS', 'SMTP / Email Config', 'SSL Deployment', 'System Monitoring'],
   },
   {
+    category: 'Languages',
+    items: ['JavaScript', 'TypeScript', 'PHP', 'Java', 'C++', 'VB.NET'],
+  },
+  {
     category: 'Tools',
-    items: ['Git', 'NPM / Yarn', 'VS Code', 'Windows Server'],
+    items: ['Git', 'NPM / Yarn', 'VS Code', 'Windows Server', 'Claude Code'],
   },
 ];
 
