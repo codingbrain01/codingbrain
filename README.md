@@ -58,6 +58,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 - Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices)
 - Certifications section with lightbox viewer + Udemy verification link
 - Floating Telegram chat widget — visitors submit their name, email, preferred callback (Email / Telegram / Viber / WhatsApp / Phone), and message; delivered instantly via `@CamdenPingBot` to a private Telegram DM
+- Developer console easter egg — styled terminal welcome message visible in browser DevTools
 - Fully responsive, mobile-first layout — no horizontal overflow, tested on Vivo V25e
 
 ## Getting Started
