@@ -224,7 +224,7 @@ export default function Projects() {
           transition={{ duration: 0.5, delay: 0.15 }}
           className="text-slate-500 dark:text-slate-400 text-xs italic mb-12"
         >
-          Note: Additional client work (13+ landing pages) is not publicly listed in accordance with company privacy and contractual confidentiality agreements.
+          Note: Some client work, including additional landing page suites, is not publicly listed in accordance with company privacy and contractual confidentiality agreements.
         </motion.p>
 
         <div className="flex flex-col gap-8 mb-16">
