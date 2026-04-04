@@ -223,7 +223,7 @@ export default function Contact() {
         </motion.div>
 
         {/* Contact links grid */}
-        <div className="grid sm:grid-cols-2 gap-4">
+        <div className="grid sm:grid-cols-2 gap-4 w-full">
           {contactLinks.map((link, i) => {
             const inner = (
               <>
@@ -249,6 +249,7 @@ export default function Contact() {
                 initial={{ opacity: 0, y: 16 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.07 }}
+                className="min-w-0"
               >
                 {link.isEmail ? (
                   <button onClick={openPicker} className={baseClass}>
