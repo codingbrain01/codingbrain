@@ -77,17 +77,22 @@ export default function Contact() {
   const sayHelloRef = useRef<HTMLDivElement>(null);
   const [btnRect, setBtnRect] = useState<DOMRect | null>(null);
 
-  // Close on outside click — checks both button and dropdown
+  // Close on outside click or scroll
   useEffect(() => {
     if (!pickerOpen) return;
-    const handler = (e: MouseEvent) => {
+    const onMouse = (e: MouseEvent) => {
       const t = e.target as Node;
       if (!buttonRef.current?.contains(t) && !dropdownRef.current?.contains(t)) {
         setPickerOpen(false);
       }
     };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    const onScroll = () => setPickerOpen(false);
+    document.addEventListener('mousedown', onMouse);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      document.removeEventListener('mousedown', onMouse);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, [pickerOpen]);
 
   // Register opener so mailPicker utility can call it directly
