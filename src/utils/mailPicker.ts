@@ -15,5 +15,17 @@ export function registerPickerOpener(fn: OpenPickerFn) {
 export function openMailPicker() {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   _navigate?.('/contact', { replace: true });
-  setTimeout(() => _openPicker?.(), 1200);
+
+  // Use scrollend event (modern browsers) — fires exactly when scroll stops
+  // Fallback: 1500ms timeout for older browsers
+  let settled = false;
+  const open = () => {
+    if (settled) return;
+    settled = true;
+    window.removeEventListener('scrollend', open);
+    _openPicker?.();
+  };
+
+  window.addEventListener('scrollend', open, { once: true });
+  setTimeout(open, 1500);
 }

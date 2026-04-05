@@ -142,7 +142,7 @@ export default function Navbar() {
               ))}
               <li>
                 <button
-                  onClick={openMailPicker}
+                  onClick={() => { setOpen(false); openMailPicker(); }}
                   className="text-indigo-500 dark:text-indigo-400 text-sm font-medium"
                 >
                   Hire me →
