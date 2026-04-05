@@ -113,13 +113,17 @@ export default function Contact() {
     }, 400);
   }
 
-  // Position dropdown below the button on all screen sizes, clamped to viewport
-  const dropdownStyle: React.CSSProperties | undefined = btnRect
+  // Always read live button position so dropdown is locked to the button
+  const liveRect = pickerOpen && buttonRef.current
+    ? buttonRef.current.getBoundingClientRect()
+    : btnRect;
+
+  const dropdownStyle: React.CSSProperties | undefined = liveRect
     ? {
         position: 'fixed',
-        top: btnRect.bottom + 8,
+        top: liveRect.bottom + 8,
         left: Math.max(8, Math.min(
-          btnRect.left + btnRect.width / 2 - DROPDOWN_WIDTH / 2,
+          liveRect.left + liveRect.width / 2 - DROPDOWN_WIDTH / 2,
           window.innerWidth - DROPDOWN_WIDTH - 8
         )),
         width: DROPDOWN_WIDTH,
