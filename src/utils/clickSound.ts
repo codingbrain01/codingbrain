@@ -19,7 +19,7 @@ export function playClick() {
     osc.frequency.setValueAtTime(1200, ac.currentTime);
     osc.frequency.exponentialRampToValueAtTime(600, ac.currentTime + 0.06);
 
-    gain.gain.setValueAtTime(1.0, ac.currentTime);
+    gain.gain.setValueAtTime(0.15, ac.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, ac.currentTime + 0.06);
 
     osc.start(ac.currentTime);
