@@ -1,5 +1,11 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { playClick } from './utils/clickSound'
+
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement;
+  if (target.closest('button, a, [role="button"]')) playClick();
+}, { passive: true });
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
