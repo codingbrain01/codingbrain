@@ -16,6 +16,7 @@ const LinkedInIcon = () => (
 );
 
 import { personal } from '../data/resume';
+import { registerPickerOpener } from '../utils/mailPicker';
 
 const email = personal.email;
 
@@ -89,17 +90,12 @@ export default function Contact() {
     return () => document.removeEventListener('mousedown', handler);
   }, [pickerOpen]);
 
-  // Triggered by "Hire me" / "Get in Touch" from other sections
+  // Register opener so mailPicker utility can call it directly
   useEffect(() => {
-    const handler = () => {
-      sayHelloRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(() => {
-        if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
-        setPickerOpen(true);
-      }, 800);
-    };
-    window.addEventListener('openMailPicker', handler);
-    return () => window.removeEventListener('openMailPicker', handler);
+    registerPickerOpener(() => {
+      if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
+      setPickerOpen(true);
+    });
   }, []);
 
   function handleToggle() {
