@@ -96,7 +96,7 @@ export default function Contact() {
       setTimeout(() => {
         if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
         setPickerOpen(true);
-      }, 400);
+      }, 800);
     };
     window.addEventListener('openMailPicker', handler);
     return () => window.removeEventListener('openMailPicker', handler);

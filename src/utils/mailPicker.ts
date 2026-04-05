@@ -8,5 +8,5 @@ export function setNavigate(fn: NavigateFn) {
 export function openMailPicker() {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   _navigate?.('/contact', { replace: true });
-  setTimeout(() => window.dispatchEvent(new CustomEvent('openMailPicker')), 350);
+  setTimeout(() => window.dispatchEvent(new CustomEvent('openMailPicker')), 100);
 }

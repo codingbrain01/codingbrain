@@ -61,7 +61,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 - `>_` terminal-style favicon
 - Dark / light mode with synchronized 300ms transitions
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
-- Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices)
+- Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices); auto-opens when triggered from Hire Me / Get in Touch buttons
 - Certifications section with lightbox viewer + Udemy verification link
 - Floating Telegram chat widget — visitors submit their name, email, preferred callback (Email / Telegram / Viber / WhatsApp / Phone), and message; delivered instantly via `@CamdenPingBot` to a private Telegram DM
 - Developer console easter egg — single styled `console.log`, theme-aware (adapts to browser light/dark preference)
