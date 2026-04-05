@@ -93,6 +93,8 @@ export default function Contact() {
   // Register opener so mailPicker utility can call it directly
   useEffect(() => {
     registerPickerOpener(() => {
+      // Instant scroll ensures button is in view before measuring
+      sayHelloRef.current?.scrollIntoView({ behavior: 'instant', block: 'center' });
       if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
       setPickerOpen(true);
     });
