@@ -15,5 +15,5 @@ export function registerPickerOpener(fn: OpenPickerFn) {
 export function openMailPicker() {
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   _navigate?.('/contact', { replace: true });
-  setTimeout(() => _openPicker?.(), 900);
+  setTimeout(() => _openPicker?.(), 1200);
 }
