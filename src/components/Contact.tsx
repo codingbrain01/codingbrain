@@ -113,19 +113,19 @@ export default function Contact() {
     }, 400);
   }
 
-  // Desktop: position dropdown below the button using viewport coords (fixed)
-  // Mobile: CSS handles it as a bottom sheet
-  const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 640;
-  const dropdownStyle: React.CSSProperties | undefined =
-    isDesktop && btnRect
-      ? {
-          position: 'fixed',
-          top: btnRect.bottom + 8,
-          left: Math.max(8, btnRect.left + btnRect.width / 2 - DROPDOWN_WIDTH / 2),
-          width: DROPDOWN_WIDTH,
-          zIndex: 9999,
-        }
-      : undefined;
+  // Position dropdown below the button on all screen sizes, clamped to viewport
+  const dropdownStyle: React.CSSProperties | undefined = btnRect
+    ? {
+        position: 'fixed',
+        top: btnRect.bottom + 8,
+        left: Math.max(8, Math.min(
+          btnRect.left + btnRect.width / 2 - DROPDOWN_WIDTH / 2,
+          window.innerWidth - DROPDOWN_WIDTH - 8
+        )),
+        width: DROPDOWN_WIDTH,
+        zIndex: 9999,
+      }
+    : undefined;
 
   const dropdownContent = (
     <motion.div
@@ -135,11 +135,7 @@ export default function Contact() {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, y: 4, scale: 0.97 }}
       transition={{ duration: 0.15 }}
-      className={
-        dropdownStyle
-          ? 'rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
-          : 'fixed bottom-4 left-4 right-4 z-9999 rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden'
-      }
+      className="rounded-xl border border-(--border) bg-(--surface) shadow-xl shadow-black/10 dark:shadow-black/40 overflow-hidden"
     >
       <p className="text-xs text-slate-600 dark:text-slate-400 font-mono px-4 pt-3 pb-2 border-b border-(--border-subtle)">
         Open with…
