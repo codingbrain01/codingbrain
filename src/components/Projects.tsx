@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Monitor, Send, Layout, CheckCircle2, ExternalLink, Bot, ClipboardList, Wrench } from 'lucide-react';
+import { Monitor, Send, Layout, CheckCircle2, ExternalLink, Bot, ClipboardList, Wrench, Vote } from 'lucide-react';
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="currentColor">
@@ -16,6 +16,7 @@ const iconMap: Record<string, React.ReactNode> = {
   bot:           <Bot size={24} />,
   clipboardList: <ClipboardList size={24} />,
   wrench:        <Wrench size={24} />,
+  vote:          <Vote size={24} />,
 };
 
 function FeaturedProject({

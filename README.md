@@ -50,6 +50,9 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 **CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app) · [Source](https://github.com/codingbrain01/crockoncrockai)
 > Personal AI chat assistant powered by Llama 3.3 70B on Groq — real-time token streaming, persistent conversations, rate limiting, and serverless Vercel backend.
 
+**Student Council Election — Voting System** · [Source](https://github.com/codingbrain01/voting-system-app)
+> Fullscreen kiosk-style JavaFX 21 voting app for Student Council elections — admin panel, in-scene overlay dialogs, data persistence via Java serialization, and MVC architecture.
+
 **Native Kiosk Monitoring System**
 > Secure Windows desktop app built with Electron for driver compliance — restricted system access, VoIP calling, and real-time agent communication.
 

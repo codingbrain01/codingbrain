@@ -155,6 +155,26 @@ export const projects = [
     github: 'https://github.com/codingbrain01/crockoncrockai',
   },
   {
+    id: 'voting-system',
+    featured: true,
+    badge: 'Internal Use',
+    title: 'Student Council Election — Voting System',
+    tagline: 'JavaFX 21 · Maven · Java · MVC · Kiosk Mode',
+    description:
+      'A fullscreen kiosk-style voting application built with JavaFX 21 and Maven for Student Council elections. Supports multiple positions and party lists, features a password-protected admin panel, and uses an in-scene overlay dialog system that never interrupts fullscreen mode — no OS dialogs, no accidental exits.',
+    highlights: [
+      'Fullscreen kiosk lockdown — blocks accidental exits, ballot preview overlay before final submission',
+      'Admin panel: add/edit/remove candidates, open/close voting, reset counts, live vote totals',
+      'In-scene overlay dialogs (StackPane + fade transitions) — alerts and confirms never break fullscreen',
+      'Data persistence via Java serialization (voting_data.ser) — survives app restarts',
+    ],
+    tags: ['JavaFX 21', 'Java', 'Maven', 'MVC', 'FXML', 'Kiosk Mode', 'Serialization'],
+    accentColor: '#22c55e',
+    icon: 'vote',
+    url: undefined,
+    github: 'https://github.com/codingbrain01/voting-system-app',
+  },
+  {
     id: 'kiosk',
     featured: true,
     badge: 'Featured',
