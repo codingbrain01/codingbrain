@@ -53,6 +53,9 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 **Student Council Election — Voting System** · [Source](https://github.com/codingbrain01/voting-system-app)
 > Fullscreen kiosk-style JavaFX 21 voting app for Student Council elections — admin panel, in-scene overlay dialogs, data persistence via Java serialization, and MVC architecture.
 
+**Sisig Republic** · [Live Demo](https://sisig-republic.vercel.app/)
+> Mobile-first web app for a 24/7 Filipino food establishment — built with React, Vite, and TailwindCSS, deployed on Vercel.
+
 **Native Kiosk Monitoring System**
 > Secure Windows desktop app built with Electron for driver compliance — restricted system access, VoIP calling, and real-time agent communication.
 
