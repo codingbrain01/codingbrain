@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Mail } from 'lucide-react';
+import { ArrowDown, Mail, Download } from 'lucide-react';
 import { personal } from '../data/resume';
 import { openMailPicker } from '../utils/mailPicker';
 
@@ -108,6 +108,14 @@ export default function Hero() {
             <Mail size={15} />
             Get in Touch
           </button>
+          <a
+            href="/resume.pdf"
+            download="Jade_Camden_Francisco_Resume.pdf"
+            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
+          >
+            <Download size={15} />
+            Resume
+          </a>
         </motion.div>
 
         {/* Social links */}

@@ -61,6 +61,8 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 
 ## Features
 
+- Resume download button in Hero section (PDF)
+- Open Graph image for rich link previews on LinkedIn, Facebook, Twitter
 - `>_` terminal-style favicon
 - Dark / light mode with synchronized 300ms transitions
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
