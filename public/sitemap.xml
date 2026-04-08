@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://codingbrain.vercel.app/</loc>
+    <loc>https://codingbrain.dev/</loc>
     <priority>1.0</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/about</loc>
+    <loc>https://codingbrain.dev/about</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/skills</loc>
+    <loc>https://codingbrain.dev/skills</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/experience</loc>
+    <loc>https://codingbrain.dev/experience</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/projects</loc>
+    <loc>https://codingbrain.dev/projects</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/certifications</loc>
+    <loc>https://codingbrain.dev/certifications</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://codingbrain.vercel.app/contact</loc>
+    <loc>https://codingbrain.dev/contact</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
