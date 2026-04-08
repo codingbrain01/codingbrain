@@ -112,7 +112,7 @@ export const projects = [
     accentColor: '#14b8a6',
     icon: 'wrench',
     url: 'https://utilityhubphi.vercel.app/',
-    github: 'https://github.com/codingbrain01/utilityhub',
+    github: undefined,
   },
   {
     id: 'attendance-tracker',
@@ -132,7 +132,7 @@ export const projects = [
     accentColor: '#f59e0b',
     icon: 'clipboardList',
     url: 'https://attendanctrackerphi.vercel.app',
-    github: 'https://github.com/codingbrain01/attendance-tracker',
+    github: undefined,
   },
   {
     id: 'crockoncrockai',
@@ -152,7 +152,7 @@ export const projects = [
     accentColor: '#8b5cf6',
     icon: 'bot',
     url: 'https://crockoncrockai.vercel.app',
-    github: 'https://github.com/codingbrain01/crockoncrockai',
+    github: undefined,
   },
   {
     id: 'voting-system',
@@ -172,7 +172,7 @@ export const projects = [
     accentColor: '#22c55e',
     icon: 'vote',
     url: undefined,
-    github: 'https://github.com/codingbrain01/voting-system-app',
+    github: undefined,
   },
   {
     id: 'kiosk',
@@ -235,26 +235,6 @@ export const projects = [
     github: undefined,
   },
   {
-    id: 'sisig-republic',
-    featured: false,
-    badge: 'Client Project',
-    title: 'Sisig Republic',
-    tagline: 'React · Vite · TailwindCSS · Vercel',
-    description:
-      'A modern web application for Sisig Republic, a 24/7 Filipino food establishment. Built and deployed on Vercel with a focus on mobile-first design, fast load times, and clear presentation of the brand and offerings.',
-    highlights: [
-      'Mobile-first responsive layout optimized for all screen sizes',
-      'Fast load times via Vite production build pipeline',
-      'Clean brand presentation with promotions and operating hours',
-      'Deployed on Vercel with automatic CI/CD on every push',
-    ],
-    tags: ['React', 'Vite', 'TailwindCSS', 'Vercel'],
-    accentColor: '#f97316',
-    icon: 'layout',
-    url: 'https://sisig-republic.vercel.app/',
-    github: undefined,
-  },
-  {
     id: 'landing-pages',
     featured: false,
     badge: '',
@@ -272,6 +252,26 @@ export const projects = [
     accentColor: '#10b981',
     icon: 'layout',
     url: undefined,
+    github: undefined,
+  },
+  {
+    id: 'sisig-republic',
+    featured: false,
+    badge: 'Client Project',
+    title: 'Sisig Republic',
+    tagline: 'React · Vite · TailwindCSS · Vercel',
+    description:
+      'A modern web application for Sisig Republic, a 24/7 Filipino food establishment. Built and deployed on Vercel with a focus on mobile-first design, fast load times, and clear presentation of the brand and offerings.',
+    highlights: [
+      'Mobile-first responsive layout optimized for all screen sizes',
+      'Fast load times via Vite production build pipeline',
+      'Clean brand presentation with promotions and operating hours',
+      'Deployed on Vercel with automatic CI/CD on every push',
+    ],
+    tags: ['React', 'Vite', 'TailwindCSS', 'Vercel'],
+    accentColor: '#f97316',
+    icon: 'layout',
+    url: 'https://sisig-republic.vercel.app/',
     github: undefined,
   },
 ];

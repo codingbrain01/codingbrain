@@ -41,16 +41,16 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 
 ## Projects
 
-**Utility Hub** · [Live Demo](https://utilityhubphi.vercel.app/) · [Source](https://github.com/codingbrain01/utilityhub)
+**Utility Hub** · [Live Demo](https://utilityhubphi.vercel.app/)
 > Client-side utility dashboard — weight converter, dev color picker, calculator, px↔rem converter, and Base64 encoder/decoder. Dark/light mode, clipboard copying, and keyboard shortcuts throughout.
 
-**AttendTrack** · [Live Demo](https://attendanctrackerphi.vercel.app/) · [Source](https://github.com/codingbrain01/attendance-tracker)
+**AttendTrack** · [Live Demo](https://attendanctrackerphi.vercel.app/)
 > Role-based attendance tracking system — clock in/out, break tracking, shift management, and full RBAC (Employee / Admin / Main Control). No backend required; service-layer architecture ready for Supabase migration.
 
-**CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app) · [Source](https://github.com/codingbrain01/crockoncrockai)
+**CrockOnCrockAI** · [Live Demo](https://crockoncrockai.vercel.app)
 > Personal AI chat assistant powered by Llama 3.3 70B on Groq — real-time token streaming, persistent conversations, rate limiting, and serverless Vercel backend.
 
-**Student Council Election — Voting System** · [Source](https://github.com/codingbrain01/voting-system-app)
+**Student Council Election — Voting System**
 > Fullscreen kiosk-style JavaFX 21 voting app for Student Council elections — admin panel, in-scene overlay dialogs, data persistence via Java serialization, and MVC architecture.
 
 **Sisig Republic** · [Live Demo](https://sisig-republic.vercel.app/)
