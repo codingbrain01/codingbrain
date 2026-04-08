@@ -38,6 +38,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 | Animations | Framer Motion |
 | Routing | React Router v7 (1-page SPA, scroll-synced URLs) |
 | Deployment | Vercel |
+| Analytics | Vercel Analytics |
 
 ## Projects
 

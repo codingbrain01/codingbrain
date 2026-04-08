@@ -1,5 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import { playClick } from './utils/clickSound'
 
 document.addEventListener('click', (e) => {
@@ -40,6 +41,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <ThemeProvider>
         <App />
+        <Analytics />
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>,
