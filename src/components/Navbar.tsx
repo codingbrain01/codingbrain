@@ -28,9 +28,16 @@ export default function Navbar() {
   }, []);
 
   function scrollTo(id: string, path: string) {
-    setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    navigate(path, { replace: true });
+    if (open) {
+      setOpen(false);
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        navigate(path, { replace: true });
+      }, 300);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+      navigate(path, { replace: true });
+    }
   }
 
   return (
