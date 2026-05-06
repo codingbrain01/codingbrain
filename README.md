@@ -24,7 +24,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 
 ## Stats
 
-- 18+ landing pages shipped
+- 20+ landing pages shipped
 - 8+ years of experience
 - 99.9% system uptime maintained
 
