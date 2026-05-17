@@ -9,7 +9,7 @@ export const personal = {
   linkedin: 'https://www.linkedin.com/in/camden-francisco-1615033b8',
   github: 'https://github.com/codingbrain01',
   summary:
-    'I build practical software for teams that need things to work: fast React frontends, automated form pipelines, internal dashboards, and desktop tools that can run in controlled environments. My work usually sits where UI, operations, and infrastructure meet.',
+    'I build practical software for teams that need things to work: fast React frontends, automated form and email pipelines, internal dashboards, and desktop tools that can run in controlled environments. My work usually sits where UI, operations, and infrastructure meet.',
 };
 
 export const skills = [
@@ -23,7 +23,7 @@ export const skills = [
   },
   {
     category: 'Backend & Integration',
-    items: ['Node.js', 'PHP', 'Telegram Bot API', 'Google Sheets API', 'REST APIs', 'Form Automation'],
+    items: ['Node.js', 'PHP', 'Telegram Bot API', 'Google Sheets API', 'Resend Email API', 'REST APIs', 'Form Automation'],
   },
   {
     category: 'Database',
@@ -52,6 +52,7 @@ export const experience = [
       'Architected and deployed 13+ high-conversion, responsive landing pages using Vite and TailwindCSS, achieving 100% mobile-first compatibility and sub-2-second load times.',
       'Engineered a custom automated lead-generation pipeline using TypeScript and Telegram Bot API, increasing data-gathering efficiency through real-time team notifications.',
       'Integrated project form submissions with Google Sheets, creating an automated lead-tracking workflow for cleaner follow-up, reporting, and lightweight CRM-style organization.',
+      'Implemented automated email workflows with Resend for form confirmations, lead notifications, and transactional follow-up messaging.',
       'Developed a specialized Desktop Application using Electron (Kiosk Mode) for driver monitoring, featuring integrated VoIP calling and real-time status synchronization.',
       'Spearheaded the full DevOps lifecycle, managing domain portfolios on InternetBS and configuring secure, high-uptime VPS environments on Hostinger.',
       'Maintains 99.9% system uptime through proactive debugging and iterative feature deployment for a suite of mission-critical internal applications.',
@@ -232,6 +233,26 @@ export const projects = [
     tags: ['Google Sheets API', 'TypeScript', 'Automation', 'Lead Capture', 'Forms'],
     accentColor: '#15803d',
     icon: 'send',
+    url: undefined,
+    github: undefined,
+  },
+  {
+    id: 'resend-email-automation',
+    featured: true,
+    badge: 'Featured',
+    title: 'Resend Email Automation Pipeline',
+    tagline: 'Resend Email API / TypeScript / Transactional Email / Automation',
+    description:
+      'An automated transactional email workflow that turns portfolio and project form submissions into reliable confirmation, notification, and follow-up emails. Built to complement Telegram alerts and Google Sheets lead tracking so every inquiry can be acknowledged, routed, and documented without manual handoffs.',
+    highlights: [
+      'Automated confirmation emails for successful form submissions',
+      'Lead notification emails routed to the right inbox for faster response',
+      'Reusable email workflow ready for project inquiries, onboarding, and status updates',
+      'Designed to work alongside Telegram alerts and Google Sheets tracking',
+    ],
+    tags: ['Resend Email API', 'TypeScript', 'Transactional Email', 'Automation', 'Lead Follow-up'],
+    accentColor: '#be123c',
+    icon: 'mail',
     url: undefined,
     github: undefined,
   },

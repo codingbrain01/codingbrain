@@ -73,7 +73,7 @@ export default function Hero() {
           animate="show"
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
-          {['React & TypeScript', 'Electron Kiosk', 'Telegram + Sheets Automation', 'VPS / DevOps'].map((tag) => (
+          {['React & TypeScript', 'Electron Kiosk', 'Telegram / Sheets / Resend', 'VPS / DevOps'].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 rounded-full bg-(--surface-2) border border-(--border) text-slate-600 dark:text-slate-400 text-xs font-mono"

@@ -34,7 +34,7 @@ export default function About() {
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
               I’m strongest on projects where the website is only part of the job: capturing leads, routing data,
-              deploying reliably, and turning manual team work into a system people can actually use.
+              sending confirmations, deploying reliably, and turning manual team work into a system people can actually use.
             </p>
 
             {/* Education card */}

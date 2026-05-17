@@ -7,6 +7,7 @@ import {
   ExternalLink,
   Filter,
   Layout,
+  Mail,
   Monitor,
   Send,
   ShieldCheck,
@@ -23,6 +24,7 @@ const iconMap: Record<string, ReactNode> = {
   monitor: <Monitor size={24} />,
   send: <Send size={24} />,
   layout: <Layout size={24} />,
+  mail: <Mail size={24} />,
   bot: <Bot size={24} />,
   clipboardList: <ClipboardList size={24} />,
   wrench: <Wrench size={24} />,
@@ -66,6 +68,11 @@ const projectMeta: Record<string, { kind: Exclude<ProjectKind, 'All'>; year: str
     kind: 'Automation',
     year: '2026',
     signal: 'Form-to-sheet lead capture',
+  },
+  'resend-email-automation': {
+    kind: 'Automation',
+    year: '2026',
+    signal: 'Transactional email workflow',
   },
   'sisig-republic': {
     kind: 'Client Work',
