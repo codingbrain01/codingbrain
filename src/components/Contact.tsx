@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from 'react';
+import { useCallback, useRef, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, ArrowUpRight, ChevronDown } from 'lucide-react';
+import { SectionHeader, SectionShell } from './ui/Section';
 
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" className="w-4.5 h-4.5" fill="currentColor">
@@ -77,6 +78,11 @@ export default function Contact() {
   const sayHelloRef = useRef<HTMLDivElement>(null);
   const [btnRect, setBtnRect] = useState<DOMRect | null>(null);
 
+  const updateButtonRect = useCallback(() => {
+    const button = buttonRef.current;
+    if (button) setBtnRect(button.getBoundingClientRect());
+  }, []);
+
   // Close on outside click or scroll
   useEffect(() => {
     if (!pickerOpen) return;
@@ -95,40 +101,37 @@ export default function Contact() {
     };
   }, [pickerOpen]);
 
-  // Register opener so mailPicker utility can call it directly
-  useEffect(() => {
-    registerPickerOpener(() => {
-      if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
-      setPickerOpen(true);
-    });
-  }, []);
-
   function handleToggle() {
-    if (!pickerOpen && buttonRef.current) {
-      setBtnRect(buttonRef.current.getBoundingClientRect());
-    }
+    if (!pickerOpen) updateButtonRect();
     setPickerOpen(v => !v);
   }
 
-  function openPicker() {
+  const openPicker = useCallback(() => {
     sayHelloRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     setTimeout(() => {
-      if (buttonRef.current) setBtnRect(buttonRef.current.getBoundingClientRect());
+      updateButtonRect();
       setPickerOpen(true);
-    }, 400);
-  }
+    }, 450);
+  }, [updateButtonRect]);
 
-  // Always read live button position so dropdown is locked to the button
-  const liveRect = pickerOpen && buttonRef.current
-    ? buttonRef.current.getBoundingClientRect()
-    : btnRect;
+  // Register opener so mailPicker utility can call it directly.
+  useEffect(() => {
+    registerPickerOpener(openPicker);
+  }, [openPicker]);
 
-  const dropdownStyle: React.CSSProperties | undefined = liveRect
+  useEffect(() => {
+    if (!pickerOpen) return;
+    updateButtonRect();
+    window.addEventListener('resize', updateButtonRect);
+    return () => window.removeEventListener('resize', updateButtonRect);
+  }, [pickerOpen, updateButtonRect]);
+
+  const dropdownStyle: React.CSSProperties | undefined = btnRect
     ? {
         position: 'fixed',
-        top: liveRect.bottom + 8,
+        top: btnRect.bottom + 8,
         left: Math.max(8, Math.min(
-          liveRect.left + liveRect.width / 2 - DROPDOWN_WIDTH / 2,
+          btnRect.left + btnRect.width / 2 - DROPDOWN_WIDTH / 2,
           window.innerWidth - DROPDOWN_WIDTH - 8
         )),
         width: DROPDOWN_WIDTH,
@@ -172,18 +175,12 @@ export default function Contact() {
   );
 
   return (
-    <section id="contact" className="py-28 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12"
-        >
-          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">06.</span>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Get In Touch</h2>
-          <div className="flex-1 h-px bg-(--border) ml-4" />
-        </motion.div>
+    <SectionShell id="contact" refProp={ref}>
+        <SectionHeader
+          index="06."
+          title="Get In Touch"
+          inView={inView}
+        />
         <div className="max-w-3xl mx-auto text-center">
 
         <motion.p
@@ -206,7 +203,7 @@ export default function Contact() {
           <button
             ref={buttonRef}
             onClick={handleToggle}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-all duration-200 glow-strong hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold transition-[background-color,transform] duration-200 glow-strong hover:scale-105"
           >
             <Mail size={18} />
             Say Hello
@@ -242,7 +239,7 @@ export default function Contact() {
             );
 
             const baseClass =
-              'flex items-center gap-4 p-4 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/30 transition-all duration-300 group text-left w-full';
+              'flex items-center gap-4 p-4 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/30 transition-colors duration-200 group text-left w-full';
 
             return (
               <motion.div
@@ -266,7 +263,6 @@ export default function Contact() {
           })}
         </div>
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

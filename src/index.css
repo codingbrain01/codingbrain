@@ -1,43 +1,58 @@
 @import "tailwindcss";
 
+@theme {
+  --color-indigo-300: #fca5a5;
+  --color-indigo-400: #f87171;
+  --color-indigo-500: #dc2626;
+  --color-indigo-600: #b91c1c;
+  --color-violet-300: #fda4af;
+  --color-violet-400: #fb7185;
+  --color-violet-500: #e11d48;
+  --color-violet-600: #be123c;
+  --color-sky-300: #fca5a5;
+  --color-sky-400: #f87171;
+  --color-sky-500: #dc2626;
+  --color-sky-600: #b91c1c;
+}
+
 /* Class-based dark mode for Tailwind v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ─── Theme tokens ─────────────────────────────────────────────────── */
 :root {
   /* Light (default until JS runs) */
-  --bg:              #f8fafc;
-  --bg-alt:          #f1f5f9;
+  --bg:              #fafafa;
+  --bg-alt:          #f4f4f5;
   --surface:         #ffffff;
-  --surface-2:       #f1f5f9;
-  --border:          #e2e8f0;
-  --border-subtle:   #f1f5f9;
+  --surface-2:       #f5f5f5;
+  --border:          #e4e4e7;
+  --border-subtle:   #efeff1;
+  --accent:          #b91c1c;
+  --accent-soft:     #ef4444;
+  --headline:        #111113;
 }
 
 :root.dark {
   /* Dark */
-  --bg:              #0a0a0f;
-  --bg-alt:          #0d0d14;
-  --surface:         #111118;
-  --surface-2:       #1a1a24;
-  --border:          #2a2a38;
-  --border-subtle:   #1e1e2a;
+  --bg:              #060607;
+  --bg-alt:          #0c0c0f;
+  --surface:         #121216;
+  --surface-2:       #1a1a1f;
+  --border:          #2c2427;
+  --border-subtle:   #201b1d;
+  --accent:          #ef4444;
+  --accent-soft:     #f87171;
+  --headline:        #f8fafc;
 }
 
 /* ─── Theme-switch sync ─────────────────────────────────────────────
-   Unlayered + !important so it beats every @layer utilities duration-*
-   class. Active only for the 350 ms window while JS holds the class.
+   Unlayered + !important so it beats Tailwind transition utilities.
+   Active only for the frame where JS swaps the theme class.
 ──────────────────────────────────────────────────────────────────── */
 .theme-switching *,
 .theme-switching *::before,
 .theme-switching *::after {
-  transition:
-    color            300ms ease,
-    background-color 300ms ease,
-    border-color     300ms ease,
-    fill             300ms ease,
-    stroke           300ms ease,
-    box-shadow       300ms ease !important;
+  transition: none !important;
 }
 
 /* ─── Base ─────────────────────────────────────────────────────────── */
@@ -59,27 +74,32 @@
   .dark body { color: #e2e8f0; }
 
   ::selection {
-    background: #6366f133;
-    color: #a5b4fc;
+    background: #dc262633;
+    color: #fecaca;
   }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 }
 
 /* ─── Utilities ────────────────────────────────────────────────────── */
 @layer utilities {
   .font-mono { font-family: 'JetBrains Mono', monospace; }
 
+  .content-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
+
   .gradient-text {
-    background: linear-gradient(135deg, #6366f1, #a78bfa, #38bdf8);
+    background: linear-gradient(135deg, var(--headline), var(--accent), var(--accent-soft));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .glow       { box-shadow: 0 0 40px #6366f122, 0 0 80px #6366f10a; }
-  .glow-strong { box-shadow: 0 0 20px #6366f144, 0 0 60px #6366f122; }
+  .glow       { box-shadow: 0 0 40px #dc262622, 0 0 80px #dc26260a; }
+  .glow-strong { box-shadow: 0 0 20px #dc262644, 0 0 60px #dc262622; }
 }

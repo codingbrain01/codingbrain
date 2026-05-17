@@ -1,25 +1,20 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { Briefcase } from 'lucide-react';
 import { experience } from '../data/resume';
+import { SectionHeader, SectionShell } from './ui/Section';
 
 export default function Experience() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="experience" className="py-28 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-16"
-        >
-          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">03.</span>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Experience</h2>
-          <div className="flex-1 h-px bg-(--border) ml-4" />
-        </motion.div>
+    <SectionShell id="experience" refProp={ref}>
+        <SectionHeader
+          index="03."
+          title="Experience"
+          inView={inView}
+        />
 
         <div className="relative">
           {/* Vertical timeline line */}
@@ -27,11 +22,8 @@ export default function Experience() {
 
           <div className="flex flex-col gap-10">
             {experience.map((job, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
                 className="relative pl-16"
               >
                 {/* Timeline dot */}
@@ -40,7 +32,7 @@ export default function Experience() {
                 </div>
 
                 {/* Card */}
-                <div className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/25 transition-all duration-300">
+                <div className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/25 transition-colors duration-200">
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
                     <div>
                       <h3 className="text-slate-900 dark:text-white font-semibold text-base">{job.role}</h3>
@@ -62,11 +54,10 @@ export default function Experience() {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

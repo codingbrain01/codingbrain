@@ -1,18 +1,13 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-
-type Theme = 'dark' | 'light';
-
-const ThemeContext = createContext<{ theme: Theme; toggle: () => void }>({
-  theme: 'dark',
-  toggle: () => {},
-});
+import { useLayoutEffect, useRef, useState } from 'react';
+import { ThemeContext, type Theme } from './theme';
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const cleanupFrame = useRef<number | null>(null);
   const [theme, setTheme] = useState<Theme>(() =>
     localStorage.getItem('theme') === 'light' ? 'light' : 'dark'
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
       root.classList.add('dark');
@@ -25,8 +20,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   function toggle() {
     const root = document.documentElement;
     root.classList.add('theme-switching');
-    setTheme(t => t === 'dark' ? 'light' : 'dark');
-    setTimeout(() => root.classList.remove('theme-switching'), 350);
+
+    if (cleanupFrame.current) {
+      window.cancelAnimationFrame(cleanupFrame.current);
+    }
+
+    setTheme(current => {
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.classList.toggle('dark', next === 'dark');
+      localStorage.setItem('theme', next);
+      return next;
+    });
+
+    cleanupFrame.current = window.requestAnimationFrame(() => {
+      cleanupFrame.current = window.requestAnimationFrame(() => {
+        root.classList.remove('theme-switching');
+        cleanupFrame.current = null;
+      });
+    });
   }
 
   return (
@@ -35,5 +46,3 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     </ThemeContext.Provider>
   );
 }
-
-export const useTheme = () => useContext(ThemeContext);

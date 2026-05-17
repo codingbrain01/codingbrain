@@ -25,14 +25,10 @@ export default function Hero() {
         className="absolute inset-0 opacity-[0.04] dark:opacity-[0.03]"
         style={{
           backgroundImage:
-            'linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px)',
+            'linear-gradient(#b91c1c 1px, transparent 1px), linear-gradient(90deg, #b91c1c 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
-
-      {/* Radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-indigo-500/5 dark:bg-indigo-600/8 blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-75 h-75 rounded-full bg-violet-500/4 dark:bg-violet-600/6 blur-[90px] pointer-events-none" />
 
       <div className="relative z-10 max-w-4xl mx-auto text-center">
         {/* Badge */}
@@ -43,7 +39,7 @@ export default function Hero() {
           animate="show"
           className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/5 text-indigo-500 dark:text-indigo-400 text-xs font-mono mb-8"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400" />
           Available for new opportunities
         </motion.div>
 
@@ -77,7 +73,7 @@ export default function Hero() {
           animate="show"
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
-          {['React & TypeScript', 'Electron Kiosk', 'Telegram Automation', 'VPS / DevOps'].map((tag) => (
+          {['React & TypeScript', 'Electron Kiosk', 'Telegram + Sheets Automation', 'VPS / DevOps'].map((tag) => (
             <span
               key={tag}
               className="px-3 py-1 rounded-full bg-(--surface-2) border border-(--border) text-slate-600 dark:text-slate-400 text-xs font-mono"
@@ -97,13 +93,13 @@ export default function Hero() {
         >
           <button
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-7 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-all duration-200 glow-strong hover:scale-105"
+            className="px-7 py-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm transition-[background-color,transform] duration-200 glow-strong hover:scale-105"
           >
             View My Work
           </button>
           <button
             onClick={openMailPicker}
-            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
+            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-[border-color,color,transform] duration-200 hover:scale-105 flex items-center gap-2"
           >
             <Mail size={15} />
             Get in Touch
@@ -111,7 +107,7 @@ export default function Hero() {
           <a
             href="/resume.pdf"
             download="Jade_Camden_Francisco_Resume.pdf"
-            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-all duration-200 hover:scale-105 flex items-center gap-2"
+            className="px-7 py-3 rounded-full border border-(--border) hover:border-indigo-400/60 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white font-semibold text-sm transition-[border-color,color,transform] duration-200 hover:scale-105 flex items-center gap-2"
           >
             <Download size={15} />
             Resume
@@ -150,7 +146,7 @@ export default function Hero() {
                 key={label}
                 onClick={onClick}
                 aria-label={label}
-                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-all duration-200"
+                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-colors duration-200"
               >
                 {icon}
               </button>
@@ -161,7 +157,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={label}
-                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-all duration-200"
+                className="w-10 h-10 rounded-full border border-(--border) flex items-center justify-center text-slate-500 hover:text-indigo-500 dark:hover:text-indigo-400 hover:border-indigo-400/40 transition-colors duration-200"
               >
                 {icon}
               </a>
@@ -182,12 +178,7 @@ export default function Hero() {
           className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-600 hover:text-slate-600 dark:hover:text-slate-400 transition-colors"
         >
           <span className="text-xs font-mono">scroll</span>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          >
-            <ArrowDown size={16} />
-          </motion.div>
+          <ArrowDown size={16} />
         </button>
       </motion.div>
     </section>

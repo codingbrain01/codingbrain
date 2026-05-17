@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { GraduationCap, Briefcase, Code2, Server } from 'lucide-react';
 import { personal, education } from '../data/resume';
+import { SectionHeader, SectionShell } from './ui/Section';
 
 const stats = [
   { icon: <Code2 size={20} />, value: '20', label: 'Landing Pages Shipped' },
@@ -15,18 +16,12 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="about" className="py-28 px-6" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12"
-        >
-          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">01.</span>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">About Me</h2>
-          <div className="flex-1 h-px bg-(--border) ml-4" />
-        </motion.div>
+    <SectionShell id="about" refProp={ref}>
+        <SectionHeader
+          index="01."
+          title="About Me"
+          inView={inView}
+        />
 
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <motion.div
@@ -38,9 +33,8 @@ export default function About() {
               {personal.summary}
             </p>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
-              I bridge the gap between polished, pixel-perfect frontends and the deeper infrastructure that keeps them
-              running — from Vite-optimized React apps to locked-down Electron kiosk environments and event-driven
-              Telegram pipelines.
+              I’m strongest on projects where the website is only part of the job: capturing leads, routing data,
+              deploying reliably, and turning manual team work into a system people can actually use.
             </p>
 
             {/* Education card */}
@@ -84,7 +78,6 @@ export default function About() {
             ))}
           </motion.div>
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

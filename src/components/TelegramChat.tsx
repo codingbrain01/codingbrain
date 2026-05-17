@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Send } from 'lucide-react';
+import { CONTACT_CALLBACK_OPTIONS, type CallbackType } from '../shared/contact';
 
 const TelegramIcon = () => (
   <svg viewBox="0 0 24 24" className="w-6 h-6" fill="currentColor">
@@ -8,34 +9,53 @@ const TelegramIcon = () => (
   </svg>
 );
 
-const callbackOptions = [
-  { value: 'email',    label: 'Email',    placeholder: 'e.g. you@email.com'      },
-  { value: 'telegram', label: 'Telegram', placeholder: 'e.g. @yourusername'      },
-  { value: 'viber',    label: 'Viber',    placeholder: 'e.g. +63 912 345 6789'   },
-  { value: 'whatsapp', label: 'WhatsApp', placeholder: 'e.g. +63 912 345 6789'   },
-  { value: 'phone',    label: 'Phone',    placeholder: 'e.g. +63 912 345 6789'   },
-];
-
 type Status = 'idle' | 'sending' | 'sent' | 'error';
+type CsrfResponse = { csrfToken: string };
 
 const baseClass =
   'px-3 py-2 rounded-lg text-sm border border-(--border) bg-(--bg) ' +
   'text-slate-800 dark:text-slate-200 placeholder:text-slate-400 dark:placeholder:text-slate-500 ' +
-  'focus:outline-none focus:border-[#229ED9] transition-colors';
+  'focus:outline-none focus:border-red-600 dark:focus:border-red-500 transition-colors';
 
 const inputClass  = `w-full ${baseClass}`;
 const selectClass = `w-auto shrink-0 ${baseClass}`;
+
+async function fetchWithTimeout(input: RequestInfo | URL, init: RequestInit, timeoutMs: number) {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    window.clearTimeout(timeout);
+  }
+}
+
+async function getCsrfToken() {
+  const res = await fetchWithTimeout('/api/csrf', {
+    method: 'GET',
+    credentials: 'same-origin',
+    headers: { Accept: 'application/json' },
+  }, 8_000);
+
+  if (!res.ok) throw new Error('Unable to create CSRF token');
+  const data = await res.json() as CsrfResponse;
+  if (!data.csrfToken) throw new Error('Invalid CSRF response');
+  return data.csrfToken;
+}
 
 export default function TelegramChat() {
   const [open, setOpen]               = useState(false);
   const [name, setName]               = useState('');
   const [email, setEmail]             = useState('');
-  const [callbackType, setCallbackType] = useState('email');
+  const [callbackType, setCallbackType] = useState<CallbackType>('email');
   const [callbackValue, setCallbackValue] = useState('');
   const [message, setMessage]         = useState('');
+  const [website, setWebsite]         = useState('');
   const [status, setStatus]           = useState<Status>('idle');
+  const openedAt = useRef(Date.now());
 
-  const selectedCallback = callbackOptions.find(o => o.value === callbackType)!;
+  const selectedCallback = CONTACT_CALLBACK_OPTIONS.find(o => o.value === callbackType)!;
 
   function handleClose() {
     setOpen(false);
@@ -46,6 +66,8 @@ export default function TelegramChat() {
       setCallbackType('email');
       setCallbackValue('');
       setMessage('');
+      setWebsite('');
+      openedAt.current = Date.now();
     }, 300);
   }
 
@@ -53,11 +75,24 @@ export default function TelegramChat() {
     e.preventDefault();
     setStatus('sending');
     try {
-      const res = await fetch('/api/contact', {
+      const csrfToken = await getCsrfToken();
+      const res = await fetchWithTimeout('/api/contact', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, callbackType, callbackValue, message }),
-      });
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          callbackType,
+          callbackValue,
+          message,
+          website,
+          submittedAt: openedAt.current,
+        }),
+      }, 10_000);
       if (!res.ok) throw new Error();
       setStatus('sent');
     } catch {
@@ -79,7 +114,7 @@ export default function TelegramChat() {
             className="w-[320px] sm:w-90 rounded-2xl overflow-hidden shadow-2xl border border-(--border) bg-(--surface)"
           >
             {/* Header */}
-            <div className="bg-[#229ED9] px-4 py-3 flex items-center gap-3">
+            <div className="bg-red-700 dark:bg-red-800 px-4 py-3 flex items-center gap-3">
               <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-sm shrink-0">
                 CF
               </div>
@@ -99,8 +134,8 @@ export default function TelegramChat() {
             <div className="p-4">
               {status === 'sent' ? (
                 <div className="py-8 text-center space-y-2">
-                  <div className="w-12 h-12 rounded-full bg-[#229ED9]/10 flex items-center justify-center mx-auto">
-                    <Send size={20} className="text-[#229ED9]" />
+                  <div className="w-12 h-12 rounded-full bg-red-600/10 flex items-center justify-center mx-auto">
+                    <Send size={20} className="text-red-600 dark:text-red-400" />
                   </div>
                   <p className="text-slate-900 dark:text-white font-semibold">Message sent!</p>
                   <p className="text-slate-500 dark:text-slate-400 text-sm">
@@ -117,6 +152,8 @@ export default function TelegramChat() {
                     value={name}
                     onChange={e => setName(e.target.value)}
                     required
+                    maxLength={80}
+                    autoComplete="name"
                     placeholder="Your full name"
                     className={inputClass}
                   />
@@ -126,18 +163,32 @@ export default function TelegramChat() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     required
+                    maxLength={120}
+                    autoComplete="email"
                     placeholder="Your email address"
                     className={inputClass}
+                  />
+
+                  <input
+                    value={website}
+                    onChange={e => setWebsite(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="hidden"
                   />
 
                   {/* Preferred callback */}
                   <div className="flex gap-2">
                     <select
                       value={callbackType}
-                      onChange={e => { setCallbackType(e.target.value); setCallbackValue(''); }}
+                      onChange={e => {
+                        setCallbackType(e.target.value as CallbackType);
+                        setCallbackValue('');
+                      }}
                       className={selectClass}
                     >
-                      {callbackOptions.map(o => (
+                      {CONTACT_CALLBACK_OPTIONS.map(o => (
                         <option key={o.value} value={o.value}>{o.label}</option>
                       ))}
                     </select>
@@ -145,6 +196,7 @@ export default function TelegramChat() {
                       value={callbackValue}
                       onChange={e => setCallbackValue(e.target.value)}
                       required
+                      maxLength={120}
                       placeholder={selectedCallback.placeholder}
                       className={`${inputClass} flex-1 min-w-0`}
                     />
@@ -154,6 +206,7 @@ export default function TelegramChat() {
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     required
+                    maxLength={1200}
                     rows={3}
                     placeholder="Describe your query or project briefly..."
                     className={`${inputClass} resize-none`}
@@ -166,7 +219,7 @@ export default function TelegramChat() {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#229ED9] hover:bg-[#1a8bc2] disabled:opacity-60 text-white text-sm font-semibold transition-colors"
+                    className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl bg-red-700 hover:bg-red-600 disabled:opacity-60 text-white text-sm font-semibold transition-colors"
                   >
                     {status === 'sending' ? (
                       <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -186,10 +239,17 @@ export default function TelegramChat() {
 
       {/* Floating button */}
       <motion.button
-        onClick={() => open ? handleClose() : setOpen(true)}
+        onClick={() => {
+          if (open) {
+            handleClose();
+            return;
+          }
+          openedAt.current = Date.now();
+          setOpen(true);
+        }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="relative w-14 h-14 rounded-full bg-[#229ED9] text-white shadow-lg shadow-[#229ED9]/40 flex items-center justify-center"
+        className="relative w-14 h-14 rounded-full bg-red-700 text-white shadow-lg shadow-red-950/40 flex items-center justify-center"
         aria-label="Open chat"
       >
         <AnimatePresence mode="wait">
@@ -217,9 +277,6 @@ export default function TelegramChat() {
         </AnimatePresence>
 
         {/* Ping ring — only when closed */}
-        {!open && (
-          <span className="absolute inset-0 rounded-full bg-[#229ED9] animate-ping opacity-30" />
-        )}
       </motion.button>
     </div>
   );

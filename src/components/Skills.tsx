@@ -1,6 +1,7 @@
 import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { skills } from '../data/resume';
+import { SectionHeader, SectionShell } from './ui/Section';
 
 const categoryColors: Record<string, string> = {
   Frontend:                 'text-violet-600 dark:text-violet-400 bg-violet-500/10 border-violet-500/20',
@@ -23,27 +24,18 @@ export default function Skills() {
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section id="skills" className="py-28 px-6 bg-(--bg-alt)" ref={ref}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 mb-12"
-        >
-          <span className="font-mono text-indigo-500 dark:text-indigo-400 text-sm">02.</span>
-          <h2 className="text-3xl font-bold text-slate-900 dark:text-white">Technical Skills</h2>
-          <div className="flex-1 h-px bg-(--border) ml-4" />
-        </motion.div>
+    <SectionShell id="skills" muted refProp={ref}>
+        <SectionHeader
+          index="02."
+          title="Technical Skills"
+          inView={inView}
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skills.map((group, i) => (
-            <motion.div
+          {skills.map((group) => (
+            <div
               key={group.category}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: i * 0.07 }}
-              className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/25 transition-all duration-300"
+              className="p-6 rounded-xl border border-(--border) bg-(--surface) hover:border-indigo-500/25 transition-colors duration-200"
             >
               <span
                 className={`inline-block px-3 py-1 rounded-full border text-xs font-semibold mb-4 ${
@@ -65,10 +57,9 @@ export default function Skills() {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </div>
-    </section>
+    </SectionShell>
   );
 }

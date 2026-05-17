@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "typecheck:api": "tsc --noEmit --target ES2023 --module ESNext --moduleResolution bundler --types node --strict api/contact.ts api/csrf.ts api/_security.ts",
+    "test:security": "node --test tests/security-regression.test.mjs",
+    "test": "npm run typecheck:api && npm run test:security"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",

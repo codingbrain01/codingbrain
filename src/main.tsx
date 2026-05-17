@@ -1,12 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Analytics } from '@vercel/analytics/react'
-import { playClick } from './utils/clickSound'
-
-document.addEventListener('click', (e) => {
-  const target = e.target as HTMLElement;
-  if (target.closest('button, a, [role="button"]')) playClick();
-}, { passive: true });
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
 import App from './App.tsx'
@@ -15,12 +9,12 @@ import { ThemeProvider } from './context/ThemeContext.tsx'
 const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
 const c = {
-  header:  'background:#0d0d14;color:#818cf8;font-size:16px;font-weight:bold;padding:8px 16px;border-radius:6px;letter-spacing:1px;',
+  header:  'background:#111113;color:#f87171;font-size:16px;font-weight:bold;padding:8px 16px;border-radius:6px;letter-spacing:1px;',
   name:    `color:${dark ? 'e2e8f0' : '1e293b'};font-size:14px;font-weight:bold;`.replace(/color:/, 'color:#'),
-  role:    `color:${dark ? '38bdf8' : '0369a1'};font-size:12px;`.replace(/color:/, 'color:#'),
-  divider: `color:${dark ? '2d2d3d' : 'cbd5e1'};`.replace(/color:/, 'color:#'),
+  role:    `color:${dark ? 'f87171' : 'b91c1c'};font-size:12px;`.replace(/color:/, 'color:#'),
+  divider: `color:${dark ? '3a2a2d' : 'd4d4d8'};`.replace(/color:/, 'color:#'),
   body:    `color:${dark ? '94a3b8' : '475569'};font-size:12px;line-height:1.6;`.replace(/color:/, 'color:#'),
-  link:    `color:${dark ? '818cf8' : '6366f1'};font-size:12px;`.replace(/color:/, 'color:#'),
+  link:    `color:${dark ? 'f87171' : 'dc2626'};font-size:12px;`.replace(/color:/, 'color:#'),
 };
 
 console.log(

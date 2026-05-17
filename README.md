@@ -68,7 +68,7 @@ Personal portfolio built from scratch showcasing full-stack and desktop engineer
 - Resume download button in Hero section (PDF)
 - Open Graph image for rich link previews on LinkedIn, Facebook, Twitter
 - `>_` terminal-style favicon
-- Dark / light mode with synchronized 300ms transitions
+- Instant dark / light mode switching
 - Scroll-spy routing — URL updates as you scroll (`/about`, `/projects`, `/certifications`, etc.)
 - Mail picker — choose Gmail, Outlook, Yahoo, or default app (portal-rendered, viewport-safe on all devices); auto-opens when triggered from Hire Me / Get in Touch buttons
 - Certifications section with lightbox viewer + Udemy verification link
@@ -87,7 +87,8 @@ npm run dev
 > ```bash
 > vercel dev
 > ```
-> Add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` to your Vercel project's environment variables before deploying.
+> Add `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`, and `CONTACT_CSRF_SECRET` to your Vercel project's environment variables before deploying.
+> `CONTACT_CSRF_SECRET` should be a long random value, for example 32+ bytes from a password manager or `openssl rand -base64 32`.
 
 ## Contact
 

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setNavigate } from './utils/mailPicker';
 import Navbar from './components/Navbar';
@@ -25,9 +25,14 @@ const sections = [
 export default function App() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const activePathRef = useRef(pathname);
 
   // Store navigate fn for mailPicker utility
   useEffect(() => { setNavigate(navigate); }, [navigate]);
+
+  useEffect(() => {
+    activePathRef.current = pathname;
+  }, [pathname]);
 
   // On first load, scroll to the section matching the URL
   useEffect(() => {
@@ -42,13 +47,19 @@ export default function App() {
 
   // Intersection Observer — updates URL as sections scroll into view
   useEffect(() => {
+    let frame = 0;
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const section = sections.find(s => s.id === entry.target.id);
-            if (section) navigate(section.path, { replace: true });
-          }
+        const visibleEntry = entries.find(entry => entry.isIntersecting);
+        if (!visibleEntry) return;
+
+        const section = sections.find(s => s.id === visibleEntry.target.id);
+        if (!section || section.path === activePathRef.current) return;
+
+        if (frame) window.cancelAnimationFrame(frame);
+        frame = window.requestAnimationFrame(() => {
+          activePathRef.current = section.path;
+          navigate(section.path, { replace: true });
         });
       },
       { rootMargin: '-40% 0px -50% 0px' }
@@ -59,11 +70,14 @@ export default function App() {
       if (el) observer.observe(el);
     });
 
-    return () => observer.disconnect();
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
   }, [navigate]);
 
   return (
-    <div className="min-h-screen bg-(--bg) text-slate-800 dark:text-slate-200 transition-colors duration-300">
+    <div className="min-h-screen bg-(--bg) text-slate-800 dark:text-slate-200">
       <Navbar />
       <main>
         <Hero />
